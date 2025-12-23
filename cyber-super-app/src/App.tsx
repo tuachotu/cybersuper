@@ -159,13 +159,14 @@ function App() {
             onBack={handleBackToTiles}
             onPractice={handlePractice}
             visitedProtocols={visitedProtocols}
+            onShowParents={handleShowParents}
           />
         </PageTransition>
       )}
 
       {stage === "work-in-progress" && (
         <PageTransition>
-          <WorkInProgressScreen onBack={handleBackFromWorkInProgress} />
+          <WorkInProgressScreen onBack={handleBackFromWorkInProgress} onShowParents={handleShowParents} />
         </PageTransition>
       )}
 
@@ -175,13 +176,14 @@ function App() {
             protocolId={currentProtocol}
             onBack={currentProtocol === 'app-hero' ? handleBackFromAppHero : handleBackToCaptainBrowsing}
             onShowFlickFeed={currentProtocol === 'app-hero' ? handleShowFlickFeed : undefined}
+            onShowParents={handleShowParents}
           />
         </PageTransition>
       )}
 
       {stage === "practice" && showPracticeIntro && (
         <PageTransition>
-          <BraveModeIntro onStart={handleStartPractice} />
+          <BraveModeIntro onStart={handleStartPractice} onShowParents={handleShowParents} />
         </PageTransition>
       )}
 
@@ -193,6 +195,7 @@ function App() {
             onAnswerCorrect={handleAnswerCorrect}
             onNext={handleNextPracticeQuestion}
             onBackToMissions={handleBackToCaptainBrowsingFromPractice}
+            onShowParents={handleShowParents}
           />
         </PageTransition>
       )}
@@ -202,13 +205,14 @@ function App() {
           <PracticeComplete
             onRetry={handleRetryPractice}
             onBackToStart={handleBackToCaptainBrowsingFromPractice}
+            onShowParents={handleShowParents}
           />
         </PageTransition>
       )}
 
       {stage === "flick-feed" && (
         <PageTransition>
-          <FlickFeedScreen onBack={handleBackFromFlickFeed} />
+          <FlickFeedScreen onBack={handleBackFromFlickFeed} onShowParents={handleShowParents} />
         </PageTransition>
       )}
     </>

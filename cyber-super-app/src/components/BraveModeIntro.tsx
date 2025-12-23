@@ -1,8 +1,9 @@
 interface BraveModeIntroProps {
   onStart: () => void;
+  onShowParents?: () => void;
 }
 
-export default function BraveModeIntro({ onStart }: BraveModeIntroProps) {
+export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntroProps) {
   return (
     <div style={{
       minHeight: '100vh',
@@ -10,8 +11,69 @@ export default function BraveModeIntro({ onStart }: BraveModeIntroProps) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem 1.5rem'
+      padding: '3rem 1.5rem',
+      position: 'relative'
     }}>
+
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onShowParents}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
       <div style={{
         width: '100%',
         maxWidth: '900px',

@@ -1,14 +1,76 @@
 interface CompletionScreenProps {
   onRetryBrave: () => void;
   onBackToStart: () => void;
+  onShowParents?: () => void;
 }
 
 export default function CompletionScreen({
   onRetryBrave,
   onBackToStart,
+  onShowParents,
 }: CompletionScreenProps) {
   return (
-    <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
+    <div style={{ position: 'relative' }}>
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onShowParents}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
+      <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
       <h1 className="text-4xl md:text-5xl font-bold text-purple-700 mb-8">
         🎉 You Did Something Brave Today!
       </h1>
@@ -40,6 +102,7 @@ export default function CompletionScreen({
         >
           Choose Another Mission
         </button>
+      </div>
       </div>
     </div>
   );
