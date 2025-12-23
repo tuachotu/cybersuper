@@ -1,0 +1,447 @@
+export type VisualType =
+  | "browser-permission"
+  | "download-prompt"
+  | "warning-popup"
+  | "form-input"
+  | "chat-message"
+  | "webpage-content"
+  | "tracking-request";
+
+export interface PracticeQuestion {
+  scenarioId: string;
+  category: string;
+  problemStatement: string;
+  possibleAnswers: string[];
+  correctPower: string;
+  explanation: string;
+  icon: string;
+  // New fields for interactive popups
+  visualType: VisualType;
+  websiteName?: string;
+  popupText: string;
+  userActions: string[]; // What user can do: ["Block", "Allow"], ["Keep", "Discard"], ["Close Tab", "Click OK"], etc.
+  correctAction: string; // Which action is safe
+}
+
+export const practiceQuestions: PracticeQuestion[] = [
+  {
+    scenarioId: "S01",
+    category: "The NO Force",
+    problemStatement: "This site wants to show notifications. Allow / Block?",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Random notification requests are rarely needed and can be unsafe. The safe choice is to block them.",
+    icon: "🔔",
+    visualType: "browser-permission",
+    websiteName: "coolwebsite.com",
+    popupText: "wants to show notifications",
+    userActions: ["Block", "Allow"],
+    correctAction: "Block"
+  },
+  {
+    scenarioId: "S02",
+    category: "The NO Force",
+    problemStatement: "A file is downloading, and the browser asks if you want to keep it.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "If you didn't start the download yourself, it could be harmful. Choosing NO keeps your device safe.",
+    icon: "💾",
+    visualType: "download-prompt",
+    websiteName: "unknown-site.net",
+    popupText: "mystery-file.exe (2.4 MB)",
+    userActions: ["Keep", "Discard"],
+    correctAction: "Discard"
+  },
+  {
+    scenarioId: "S03",
+    category: "The NO Force",
+    problemStatement: "A pop-up says your computer is slow and tells you to click YES to fix it.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Pop-ups claiming your computer is broken are almost always fake. NO is the correct response.",
+    icon: "⚠️",
+    visualType: "warning-popup",
+    websiteName: "fastpc-optimizer.com",
+    popupText: "Your computer is running slow! Click YES to speed it up now.",
+    userActions: ["Yes", "No"],
+    correctAction: "No"
+  },
+  {
+    scenarioId: "S04",
+    category: "The NO Force",
+    problemStatement: "A website asks to use your camera even though you're not in a video call.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "If the camera request wasn't expected, decline it. Websites should not access your camera randomly.",
+    icon: "📸",
+    visualType: "browser-permission",
+    websiteName: "random-games.com",
+    popupText: "wants to use your camera",
+    userActions: ["Block", "Allow"],
+    correctAction: "Block"
+  },
+  {
+    scenarioId: "S05",
+    category: "The Triple Shield",
+    problemStatement: "A website suddenly asks for your birthday to continue.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "This is unexpected. Use the Triple Shield: Ask a parent first before typing personal details.",
+    icon: "🎂",
+    visualType: "form-input",
+    websiteName: "fun-quizzes.net",
+    popupText: "Enter your birthday to see your results!",
+    userActions: ["Enter Info", "Close Tab", "Ask Parent"],
+    correctAction: "Ask Parent"
+  },
+  {
+    scenarioId: "S06",
+    category: "The Triple Shield",
+    problemStatement: "A webpage loads and shows a warning that your device is infected.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Fake virus pop-ups are common. Close the tab immediately — part of the Triple Shield.",
+    icon: "💀",
+    visualType: "warning-popup",
+    websiteName: "virus-alert-system.com",
+    popupText: "⚠️ WARNING! Your device is infected with 5 viruses! Click here to remove them now!",
+    userActions: ["Click Here", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S07",
+    category: "The Triple Shield",
+    problemStatement: "You open a website and something appears that makes you uncomfortable.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "If something feels wrong, tell a parent. That's the 'Tell' part of the Triple Shield.",
+    icon: "😕",
+    visualType: "webpage-content",
+    websiteName: "strange-website.com",
+    popupText: "[Uncomfortable content displayed]",
+    userActions: ["Stay on Page", "Close Tab & Tell Parent"],
+    correctAction: "Close Tab & Tell Parent"
+  },
+  {
+    scenarioId: "S08",
+    category: "The Triple Shield",
+    problemStatement: "A link opens a strange page you didn't mean to visit.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "When something unexpected opens, close it immediately. That's the 'Close' part of your shield.",
+    icon: "❓",
+    visualType: "webpage-content",
+    websiteName: "weirdsit3.xyz",
+    popupText: "You've been redirected to an unexpected page...",
+    userActions: ["Explore Page", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S09",
+    category: "The Never-Ever Rules",
+    problemStatement: "A game chat asks, 'What's your age?'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Your age is personal information. Never share it in chats or online games.",
+    icon: "🎮",
+    visualType: "chat-message",
+    websiteName: "MultiplayerQuest",
+    popupText: "CoolPlayer123: Hey! What's your age?",
+    userActions: ["Tell Them", "Don't Reply"],
+    correctAction: "Don't Reply"
+  },
+  {
+    scenarioId: "S10",
+    category: "The Never-Ever Rules",
+    problemStatement: "A website asks for your full name to continue an activity.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Never share your real name online unless a parent approves.",
+    icon: "📝",
+    visualType: "form-input",
+    websiteName: "free-games-unlimited.com",
+    popupText: "Enter your full name to unlock premium features!",
+    userActions: ["Enter Name", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S11",
+    category: "The Never-Ever Rules",
+    problemStatement: "Someone online says, 'Turn on your camera so I know it's you.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Never turn on your camera for strangers. Video is personal information.",
+    icon: "📷",
+    visualType: "chat-message",
+    websiteName: "ChatZone",
+    popupText: "Stranger2847: Turn on your camera so I know it's you",
+    userActions: ["Turn On Camera", "Refuse & Report"],
+    correctAction: "Refuse & Report"
+  },
+  {
+    scenarioId: "S12",
+    category: "The Never-Ever Rules",
+    problemStatement: "A website wants your home address for a 'free gift.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Your address is highly private. Never share it with websites offering prizes.",
+    icon: "🏠",
+    visualType: "form-input",
+    websiteName: "win-prizes-now.com",
+    popupText: "Congratulations! Enter your home address to claim your FREE GIFT!",
+    userActions: ["Enter Address", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S13",
+    category: "The NO Force",
+    problemStatement: "A website shows a message: 'We can speed up your device! Install now?'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "These pop-ups often install unsafe software. Decline anything you didn't ask for.",
+    icon: "⚡",
+    visualType: "warning-popup",
+    websiteName: "speedbooster-pro.net",
+    popupText: "Your device is slow! Install SpeedBooster Pro now?",
+    userActions: ["Install", "Cancel"],
+    correctAction: "Cancel"
+  },
+  {
+    scenarioId: "S14",
+    category: "The NO Force",
+    problemStatement: "A website you've never visited asks: 'Allow this site to check your microphone?'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Microphone access is sensitive. Decline unless you specifically need it.",
+    icon: "🎤",
+    visualType: "browser-permission",
+    websiteName: "mystery-page.org",
+    popupText: "wants to use your microphone",
+    userActions: ["Block", "Allow"],
+    correctAction: "Block"
+  },
+  {
+    scenarioId: "S15",
+    category: "The NO Force",
+    problemStatement: "A browser extension says it will give you free emojis if you add it.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Extensions can access a lot of your data. Never install one without permission.",
+    icon: "🔧",
+    visualType: "browser-permission",
+    websiteName: "Chrome Web Store",
+    popupText: "Free Emoji Pack wants to: Read and change all your data on websites you visit",
+    userActions: ["Add Extension", "Cancel"],
+    correctAction: "Cancel"
+  },
+  {
+    scenarioId: "S16",
+    category: "The NO Force",
+    problemStatement: "A page pops up asking if it can run an app you did not download.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Apps should never run automatically. Reject unexpected requests.",
+    icon: "📦",
+    visualType: "browser-permission",
+    websiteName: "System Alert",
+    popupText: "Unknown application wants to run on your computer",
+    userActions: ["Run", "Block"],
+    correctAction: "Block"
+  },
+  {
+    scenarioId: "S17",
+    category: "The Triple Shield",
+    problemStatement: "You click a link and suddenly land on a website full of ads and flashing warnings.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Close the tab immediately when a page looks unsafe or confusing.",
+    icon: "🚨",
+    visualType: "webpage-content",
+    websiteName: "click-here-now.biz",
+    popupText: "[Page with flashing ads: CLICK HERE! WIN NOW! URGENT!]",
+    userActions: ["Click Ads", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S18",
+    category: "The Triple Shield",
+    problemStatement: "A friend sends you a link, but it opens to a page that looks nothing like you expected.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Unexpected pages can be risky. Close the page and ask before continuing.",
+    icon: "🔍",
+    visualType: "webpage-content",
+    websiteName: "not-what-you-expected.ru",
+    popupText: "This doesn't look like what your friend described...",
+    userActions: ["Continue Browsing", "Close Tab & Ask Friend"],
+    correctAction: "Close Tab & Ask Friend"
+  },
+  {
+    scenarioId: "S19",
+    category: "The Triple Shield",
+    problemStatement: "You see a message saying 'Your account will be deleted unless you click here!'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Scare messages are often fake. Close the page and tell a parent.",
+    icon: "⚠️",
+    visualType: "warning-popup",
+    websiteName: "account-security-alert.com",
+    popupText: "⚠️ URGENT! Your account will be deleted in 24 hours unless you verify now!",
+    userActions: ["Click Here", "Close Tab & Tell Parent"],
+    correctAction: "Close Tab & Tell Parent"
+  },
+  {
+    scenarioId: "S20",
+    category: "The Triple Shield",
+    problemStatement: "You accidentally type the wrong website name and end up somewhere strange.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Mistyped URLs can lead to unsafe sites. Close it immediately.",
+    icon: "⌨️",
+    visualType: "webpage-content",
+    websiteName: "g00gle.com (not google.com)",
+    popupText: "This site looks suspicious and different from what you expected...",
+    userActions: ["Stay on Site", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S21",
+    category: "The Never-Ever Rules",
+    problemStatement: "A user in an online game asks, 'Which city do you live in?'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Location information should never be shared with people online.",
+    icon: "🌍",
+    visualType: "chat-message",
+    websiteName: "BattleArena Online",
+    popupText: "XxGamerxX: Which city do you live in?",
+    userActions: ["Tell Them", "Don't Reply"],
+    correctAction: "Don't Reply"
+  },
+  {
+    scenarioId: "S22",
+    category: "The Never-Ever Rules",
+    problemStatement: "A form on a random website asks you to type your school name.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Your school counts as personal info. Don't share it unless a parent approves.",
+    icon: "🏫",
+    visualType: "form-input",
+    websiteName: "student-connect.info",
+    popupText: "What school do you go to?",
+    userActions: ["Enter School Name", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S23",
+    category: "The Never-Ever Rules",
+    problemStatement: "An online quiz asks for your phone number 'to see your results.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Quizzes don't need your phone number. Don't share private contact info.",
+    icon: "📱",
+    visualType: "form-input",
+    websiteName: "buzzquizzes.com",
+    popupText: "Enter your phone number to see your quiz results!",
+    userActions: ["Enter Phone Number", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S24",
+    category: "The Never-Ever Rules",
+    problemStatement: "A stranger in a game says, 'Send me a photo so I know you're real.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Never send photos to strangers online, even if they seem friendly.",
+    icon: "📸",
+    visualType: "chat-message",
+    websiteName: "GameWorld Chat",
+    popupText: "Unknown_User: Send me a photo so I know you're real",
+    userActions: ["Send Photo", "Refuse & Block"],
+    correctAction: "Refuse & Block"
+  },
+  {
+    scenarioId: "S25",
+    category: "The NO Force",
+    problemStatement: "A website you barely know asks: 'Allow this site to track your browsing activity?'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Tracking lets websites collect your data. Decline any request you didn't expect.",
+    icon: "👁️",
+    visualType: "tracking-request",
+    websiteName: "sketchy-deals.com",
+    popupText: "This site wants to track your activity across other websites",
+    userActions: ["Accept Tracking", "Reject Tracking"],
+    correctAction: "Reject Tracking"
+  },
+  {
+    scenarioId: "S26",
+    category: "The NO Force",
+    problemStatement: "A pop-up appears saying, 'Click YES to claim your free prize!'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the NO Force",
+    explanation: "Prize pop-ups are almost always scams. Choosing NO keeps you safe.",
+    icon: "🎁",
+    visualType: "warning-popup",
+    websiteName: "free-prizes-winner.com",
+    popupText: "🎉 Congratulations! You've won a FREE iPhone! Click YES to claim now!",
+    userActions: ["Yes", "No"],
+    correctAction: "No"
+  },
+  {
+    scenarioId: "S27",
+    category: "The Triple Shield",
+    problemStatement: "You hear a loud beep and a pop-up says your device has a 'critical issue.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Scary alerts are designed to trick you. Close the page and tell a parent.",
+    icon: "🚫",
+    visualType: "warning-popup",
+    websiteName: "system-critical-error.com",
+    popupText: "🔊 BEEP! CRITICAL SYSTEM ERROR! Your device has been compromised! Call this number immediately!",
+    userActions: ["Call Number", "Close Tab & Tell Parent"],
+    correctAction: "Close Tab & Tell Parent"
+  },
+  {
+    scenarioId: "S28",
+    category: "The Never-Ever Rules",
+    problemStatement: "A site asks you to upload a picture 'to customize your avatar.'",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Uploading real photos gives away personal information. Don't share images without permission.",
+    icon: "🧍",
+    visualType: "form-input",
+    websiteName: "avatar-maker-pro.com",
+    popupText: "Upload a photo to create your custom avatar!",
+    userActions: ["Upload Photo", "Skip & Use Default"],
+    correctAction: "Skip & Use Default"
+  },
+  {
+    scenarioId: "S29",
+    category: "The Triple Shield",
+    problemStatement: "You end up on a website that plays a video automatically without you clicking anything.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Triple Shield",
+    explanation: "Unexpected auto-play can be a red flag. Close the page to stay safe.",
+    icon: "▶️",
+    visualType: "webpage-content",
+    websiteName: "auto-video-site.tv",
+    popupText: "[Video playing automatically with loud sound]",
+    userActions: ["Keep Watching", "Close Tab"],
+    correctAction: "Close Tab"
+  },
+  {
+    scenarioId: "S30",
+    category: "The Never-Ever Rules",
+    problemStatement: "A survey promises a reward if you give your email address and age.",
+    possibleAnswers: ["Use the NO Force", "Use the Triple Shield", "Use the Never-Ever Rules"],
+    correctPower: "Use the Never-Ever Rules",
+    explanation: "Surveys often try to collect private data. Never share personal details for rewards.",
+    icon: "📊",
+    visualType: "form-input",
+    websiteName: "get-rewards-survey.com",
+    popupText: "Enter your email and age to receive a $50 gift card!",
+    userActions: ["Enter Info", "Close Tab"],
+    correctAction: "Close Tab"
+  }
+];
