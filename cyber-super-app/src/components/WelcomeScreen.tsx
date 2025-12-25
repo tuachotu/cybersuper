@@ -17,6 +17,65 @@ export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenP
       padding: '2rem 1.5rem'
     }}>
 
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onShowParents}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
       {/* Main Content - Centered */}
       <div style={{
         textAlign: 'center',
@@ -25,7 +84,7 @@ export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenP
         alignItems: 'center',
         flex: '1',
         justifyContent: 'center',
-        gap: '3rem'
+        gap: '1.5rem'
       }}>
 
         {/* Mascot - Fixed, Centered, Larger */}
@@ -61,6 +120,42 @@ export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenP
           </div>
         </div>
 
+        {/* Essential Skills Section */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.5rem',
+          maxWidth: '900px',
+          width: '100%',
+          padding: '0 1.5rem'
+        }}>
+          {/* Bold Heading */}
+          <h2 style={{
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 900,
+            color: '#1f2937',
+            fontFamily: "'Nunito', sans-serif",
+            margin: 0,
+            textAlign: 'center'
+          }}>
+            Essential skills for a digital world.
+          </h2>
+
+          {/* Description Text */}
+          <p style={{
+            fontSize: 'clamp(0.95rem, 2vw, 1.125rem)',
+            color: '#4b5563',
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 600,
+            lineHeight: '1.6',
+            textAlign: 'center',
+            margin: 0
+          }}>
+            Kids learn how to browse wisely, understand how apps work, and think before making choices. The program builds habits that help kids stay safe, confident, and in control online.
+          </p>
+        </div>
+
         {/* Call to Action Button */}
         <button
           onClick={onStart}
@@ -89,88 +184,8 @@ export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenP
             e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.5)';
           }}
         >
-          Welcome Future Cyber Super Hero, Let's Begin Training!
+          Start Cyber Super Training
         </button>
-      </div>
-
-      {/* Bottom Links */}
-      <div style={{
-        display: 'flex',
-        gap: '1rem',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: '2rem',
-        width: '100%',
-        maxWidth: '700px',
-        padding: '0 1rem'
-      }}>
-        <button
-          onClick={onShowParents}
-          style={{
-            display: 'inline-block',
-            color: 'white',
-            fontSize: '0.95rem',
-            fontWeight: 700,
-            textDecoration: 'none',
-            padding: '0.85rem 2rem',
-            borderRadius: '2rem',
-            background: '#3b82f6',
-            border: '2px solid #2563eb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-            flex: '1 1 auto',
-            minWidth: '200px',
-            textAlign: 'center',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#2563eb';
-            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#3b82f6';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-        >
-          👨‍👩‍👧‍👦 Parents: Learn More
-        </button>
-
-        <a
-          href="https://twitter.com/vikkrraant"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            color: 'white',
-            fontSize: '0.95rem',
-            fontWeight: 700,
-            textDecoration: 'none',
-            padding: '0.85rem 2rem',
-            borderRadius: '2rem',
-            background: '#3b82f6',
-            border: '2px solid #2563eb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-            flex: '1 1 auto',
-            minWidth: '200px',
-            textAlign: 'center'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#2563eb';
-            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#3b82f6';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-        >
-          📧 Contact Us
-        </a>
       </div>
 
       {/* Very Subtle corner decorations */}

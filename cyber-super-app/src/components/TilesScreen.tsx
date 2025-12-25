@@ -50,8 +50,69 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '2rem 1.5rem'
+      padding: '2rem 1.5rem',
+      position: 'relative'
     }}>
+
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onShowParents}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
       <div style={{ width: '100%', maxWidth: '1400px' }}>
         {/* Header */}
         <h1 style={{
@@ -185,18 +246,11 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
           ))}
         </div>
 
-        {/* Bottom Buttons */}
+        {/* Bottom Button */}
         <div style={{
           display: 'flex',
-          gap: '1rem',
-          flexWrap: 'wrap',
           justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: '4rem',
-          width: '100%',
-          maxWidth: '800px',
-          margin: '4rem auto 0',
-          padding: '0 1rem'
+          marginTop: '4rem'
         }}>
           <button
             onClick={() => window.location.reload()}
@@ -212,9 +266,6 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
               border: '2px solid #2563eb',
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-              flex: '1 1 auto',
-              minWidth: '180px',
-              textAlign: 'center',
               cursor: 'pointer'
             }}
             onMouseEnter={(e) => {
@@ -230,73 +281,6 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
           >
             🏠 Back Home
           </button>
-
-          <button
-            onClick={onShowParents}
-            style={{
-              display: 'inline-block',
-              color: 'white',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              textDecoration: 'none',
-              padding: '0.85rem 2rem',
-              borderRadius: '2rem',
-              background: '#3b82f6',
-              border: '2px solid #2563eb',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-              flex: '1 1 auto',
-              minWidth: '180px',
-              textAlign: 'center',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#2563eb';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#3b82f6';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            👨‍👩‍👧‍👦 Parents: Learn More
-          </button>
-
-          <a
-            href="https://twitter.com/vikkrraant"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              color: 'white',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              textDecoration: 'none',
-              padding: '0.85rem 2rem',
-              borderRadius: '2rem',
-              background: '#3b82f6',
-              border: '2px solid #2563eb',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-              flex: '1 1 auto',
-              minWidth: '180px',
-              textAlign: 'center'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#2563eb';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#3b82f6';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            📧 Contact Us
-          </a>
         </div>
       </div>
     </div>

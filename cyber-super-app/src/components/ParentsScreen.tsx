@@ -10,8 +10,69 @@ export default function ParentsScreen({ onBack }: ParentsScreenProps) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem 1.5rem'
+      padding: '3rem 1.5rem',
+      position: 'relative'
     }}>
+
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onBack}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
       <div style={{
         maxWidth: '800px',
         width: '100%',
@@ -52,6 +113,82 @@ export default function ParentsScreen({ onBack }: ParentsScreenProps) {
           <p style={{ marginBottom: '2rem' }}>
             If this project helps your family the way it's helping mine, that's all I could hope for.
           </p>
+
+          <hr style={{
+            border: 'none',
+            borderTop: '2px solid #e2e8f0',
+            margin: '2.5rem 0'
+          }} />
+
+          {/* What This Is / Is Not Section */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '2rem',
+            marginBottom: '2.5rem'
+          }}>
+            {/* What This Is */}
+            <div>
+              <h3 style={{
+                fontSize: '1.5rem',
+                fontWeight: 800,
+                color: '#10b981',
+                marginBottom: '1rem',
+                fontFamily: "'Nunito', sans-serif"
+              }}>
+                What This Is
+              </h3>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  A learning experience for kids
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  Focused on understanding apps and choices
+                </li>
+                <li style={{ marginBottom: 0, paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  Designed to build confidence and awareness
+                </li>
+              </ul>
+            </div>
+
+            {/* What This Is Not */}
+            <div>
+              <h3 style={{
+                fontSize: '1.5rem',
+                fontWeight: 800,
+                color: '#ef4444',
+                marginBottom: '1rem',
+                fontFamily: "'Nunito', sans-serif"
+              }}>
+                What This Is Not
+              </h3>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  Not a monitoring tool
+                </li>
+                <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  Not spyware
+                </li>
+                <li style={{ marginBottom: 0, paddingLeft: '1.5rem', position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: 0 }}>•</span>
+                  Not a replacement for parenting
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <hr style={{
             border: 'none',

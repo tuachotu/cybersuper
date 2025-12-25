@@ -11,6 +11,7 @@ interface BraveQuestionProps {
   questionNumber: number;
   totalQuestions: number;
   onNext: () => void;
+  onShowParents?: () => void;
 }
 
 export default function BraveQuestion({
@@ -18,6 +19,7 @@ export default function BraveQuestion({
   questionNumber,
   totalQuestions,
   onNext,
+  onShowParents,
 }: BraveQuestionProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<"yes" | "no" | null>(
     null
@@ -31,9 +33,71 @@ export default function BraveQuestion({
 
   const isCorrect = selectedAnswer === question.correctAnswer;
 
+  const topMenu = (
+    <div style={{
+      position: 'absolute',
+      top: '1.5rem',
+      right: '1.5rem',
+      display: 'flex',
+      gap: '1.5rem',
+      alignItems: 'center',
+      zIndex: 10
+    }}>
+      <button
+        onClick={onShowParents}
+        style={{
+          background: 'none',
+          border: 'none',
+          color: '#000000',
+          fontSize: '0.95rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          textDecoration: 'none',
+          fontFamily: "'Nunito', sans-serif",
+          padding: '0.5rem',
+          transition: 'all 0.2s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.textDecoration = 'underline';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.textDecoration = 'none';
+        }}
+      >
+        Parents
+      </button>
+
+      <a
+        href="https://twitter.com/vikkrraant"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          background: 'none',
+          color: '#000000',
+          fontSize: '0.95rem',
+          fontWeight: 700,
+          textDecoration: 'none',
+          fontFamily: "'Nunito', sans-serif",
+          padding: '0.5rem',
+          transition: 'all 0.2s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.textDecoration = 'underline';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.textDecoration = 'none';
+        }}
+      >
+        Contact
+      </a>
+    </div>
+  );
+
   if (!showFeedback) {
     return (
-      <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+      <div style={{ position: 'relative' }}>
+        {topMenu}
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
         <div className="text-center mb-6">
           <p className="text-purple-600 font-semibold text-lg">
             Question {questionNumber} of {totalQuestions}
@@ -64,12 +128,15 @@ export default function BraveQuestion({
             NO
           </button>
         </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+    <div style={{ position: 'relative' }}>
+      {topMenu}
+      <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
       <div className="text-center mb-6">
         <p className="text-purple-600 font-semibold text-lg">
           Question {questionNumber} of {totalQuestions}
@@ -105,6 +172,7 @@ export default function BraveQuestion({
             ? "Next Brave Thing"
             : "See My Results"}
         </button>
+      </div>
       </div>
     </div>
   );

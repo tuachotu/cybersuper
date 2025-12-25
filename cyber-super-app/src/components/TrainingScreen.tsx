@@ -2,9 +2,10 @@ interface TrainingScreenProps {
   protocolId: string;
   onBack: () => void;
   onShowFlickFeed?: () => void;
+  onShowParents?: () => void;
 }
 
-export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed }: TrainingScreenProps) {
+export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, onShowParents }: TrainingScreenProps) {
   const renderNoForce = () => (
     <div>
       {/* Title */}
@@ -1047,7 +1048,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed }: 
       }}>
         <img
           src="/smart-ai.png"
-          alt="App Trap Bear"
+          alt="App Hero Bear"
           style={{
             width: '150px',
             height: '150px',
@@ -1061,38 +1062,8 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed }: 
           margin: 0,
           fontFamily: "'Nunito', sans-serif"
         }}>
-          App Trap
+          App Hero
         </h1>
-      </div>
-
-      {/* Power to Practice Rectangle */}
-      <div style={{
-        background: 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)',
-        borderRadius: '1.5rem',
-        padding: '2rem',
-        marginBottom: '2rem',
-        border: '3px solid #10b981'
-      }}>
-        <h2 style={{
-          fontSize: '1.75rem',
-          fontWeight: 900,
-          color: '#065f46',
-          marginBottom: '1rem',
-          fontFamily: "'Nunito', sans-serif",
-          textAlign: 'center'
-        }}>
-          Practice Your Power: Take Control
-        </h2>
-        <p style={{
-          fontSize: '1.125rem',
-          lineHeight: '1.8',
-          color: '#065f46',
-          fontFamily: "'Nunito', sans-serif",
-          fontWeight: 700,
-          textAlign: 'center'
-        }}>
-          If you don't choose the settings, the app decides for you.
-        </p>
       </div>
 
       {/* App Trap Story */}
@@ -1116,6 +1087,37 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed }: 
       }}>
         Nothing bad happened. No rules were broken. The app did exactly what it was designed to do- keep your attention.
       </p>
+
+      {/* Power to Practice Rectangle */}
+      <div style={{
+        background: 'white',
+        borderRadius: '1.5rem',
+        padding: '2rem',
+        marginBottom: '2rem',
+        border: '3px solid #10b981'
+      }}>
+        <h2 style={{
+          fontSize: '1.75rem',
+          fontWeight: 900,
+          color: '#065f46',
+          marginBottom: '1rem',
+          fontFamily: "'Nunito', sans-serif",
+          textAlign: 'center'
+        }}>
+          Your Power: Taking Control
+        </h2>
+        <p style={{
+          fontSize: '1.125rem',
+          lineHeight: '1.8',
+          color: '#065f46',
+          fontFamily: "'Nunito', sans-serif",
+          fontWeight: 600,
+          textAlign: 'center',
+          margin: 0
+        }}>
+          Find the settings. Change how the app works for you.
+        </p>
+      </div>
 
       {/* Action Buttons */}
       <div style={{
@@ -1857,8 +1859,69 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed }: 
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem 1.5rem'
+      padding: '3rem 1.5rem',
+      position: 'relative'
     }}>
+
+      {/* Top Right Menu */}
+      <div style={{
+        position: 'absolute',
+        top: '1.5rem',
+        right: '1.5rem',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
+        zIndex: 10
+      }}>
+        <button
+          onClick={onShowParents}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Parents
+        </button>
+
+        <a
+          href="https://twitter.com/vikkrraant"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'none',
+            color: '#000000',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            fontFamily: "'Nunito', sans-serif",
+            padding: '0.5rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+          }}
+        >
+          Contact
+        </a>
+      </div>
+
       <div style={{
         width: '100%',
         maxWidth: '900px',
