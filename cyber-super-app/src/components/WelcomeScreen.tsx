@@ -1,9 +1,14 @@
+import { useState } from "react";
+
 interface WelcomeScreenProps {
   onStart: () => void;
   onShowParents: () => void;
+  onShowPrintables: () => void;
 }
 
-export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenProps) {
+export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables }: WelcomeScreenProps) {
+  const [showResourcesMenu, setShowResourcesMenu] = useState(false);
+
   return (
     <div style={{
       width: '100%',
@@ -50,6 +55,78 @@ export default function WelcomeScreen({ onStart, onShowParents }: WelcomeScreenP
         >
           Parents
         </button>
+
+        {/* Resources Dropdown */}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setShowResourcesMenu(!showResourcesMenu)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#000000',
+              fontSize: '0.95rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              textDecoration: 'none',
+              fontFamily: "'Nunito', sans-serif",
+              padding: '0.5rem',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.textDecoration = 'underline';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.textDecoration = 'none';
+            }}
+          >
+            Resources
+          </button>
+
+          {/* Dropdown Menu */}
+          {showResourcesMenu && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              marginTop: '0.5rem',
+              background: 'white',
+              borderRadius: '0.5rem',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              border: '2px solid #e5e7eb',
+              minWidth: '150px',
+              overflow: 'hidden',
+              zIndex: 20
+            }}>
+              <button
+                onClick={() => {
+                  setShowResourcesMenu(false);
+                  onShowPrintables();
+                }}
+                style={{
+                  width: '100%',
+                  background: 'none',
+                  border: 'none',
+                  color: '#000000',
+                  fontSize: '0.95rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontFamily: "'Nunito', sans-serif",
+                  padding: '0.75rem 1rem',
+                  textAlign: 'left',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f3f4f6';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'none';
+                }}
+              >
+                Printables
+              </button>
+            </div>
+          )}
+        </div>
 
         <a
           href="https://twitter.com/vikkrraant"

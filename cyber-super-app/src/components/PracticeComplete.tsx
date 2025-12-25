@@ -1,9 +1,10 @@
 interface PracticeCompleteProps {
   onRetry: () => void;
   onBackToStart: () => void;
+  onShowParents?: () => void;
 }
 
-export default function PracticeComplete({ onRetry, onBackToStart }: PracticeCompleteProps) {
+export default function PracticeComplete({ onRetry, onBackToStart, onShowParents: _onShowParents }: PracticeCompleteProps) {
   return (
     <div style={{
       minHeight: '100vh',

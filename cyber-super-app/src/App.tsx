@@ -13,6 +13,7 @@ import ParentsScreen from "./components/ParentsScreen";
 import CaptainBrowsingScreen from "./components/CaptainBrowsingScreen";
 import WorkInProgressScreen from "./components/WorkInProgressScreen";
 import FlickFeedScreen from "./components/FlickFeedScreen";
+import PrintablesScreen from "./components/PrintablesScreen";
 
 // Shuffle array helper function
 function shuffleArray<T>(array: T[]): T[] {
@@ -130,10 +131,18 @@ function App() {
     setStage("training");
   };
 
+  const handleShowPrintables = () => {
+    setStage("printables");
+  };
+
   return (
     <>
       {stage === "welcome" && (
-        <WelcomeScreen onStart={handleUnlockPowers} onShowParents={handleShowParents} />
+        <WelcomeScreen
+          onStart={handleUnlockPowers}
+          onShowParents={handleShowParents}
+          onShowPrintables={handleShowPrintables}
+        />
       )}
 
       {stage === "tiles" && (
@@ -213,6 +222,12 @@ function App() {
       {stage === "flick-feed" && (
         <PageTransition>
           <FlickFeedScreen onBack={handleBackFromFlickFeed} onShowParents={handleShowParents} />
+        </PageTransition>
+      )}
+
+      {stage === "printables" && (
+        <PageTransition>
+          <PrintablesScreen onBack={handleBackToHome} onShowParents={handleShowParents} />
         </PageTransition>
       )}
     </>

@@ -7,6 +7,7 @@ interface PracticeQuestionProps {
   onAnswerCorrect: () => void;
   onNext: () => void;
   onBackToMissions: () => void;
+  onShowParents?: () => void;
 }
 
 export default function PracticeQuestion({
@@ -14,7 +15,8 @@ export default function PracticeQuestion({
   correctCount,
   onAnswerCorrect,
   onNext,
-  onBackToMissions
+  onBackToMissions,
+  onShowParents: _onShowParents
 }: PracticeQuestionProps) {
   const [selectedAction, setSelectedAction] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
