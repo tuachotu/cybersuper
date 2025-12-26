@@ -1,11 +1,12 @@
 interface TrainingScreenProps {
   protocolId: string;
   onBack: () => void;
-  onShowFlickFeed?: () => void;
+  onShowFlickFeedTraps?: () => void; // For "See the App Trap" button
+  onShowFlickFeedMissions?: () => void; // For "Practice Taking Control" button
   onShowParents?: () => void;
 }
 
-export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, onShowParents }: TrainingScreenProps) {
+export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTraps, onShowFlickFeedMissions, onShowParents }: TrainingScreenProps) {
   const renderNoForce = () => (
     <div>
       {/* Title */}
@@ -1160,7 +1161,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
         </button>
 
         <button
-          onClick={onShowFlickFeed}
+          onClick={onShowFlickFeedTraps}
           style={{
             display: 'inline-block',
             color: 'white',
@@ -1192,7 +1193,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
         </button>
 
         <button
-          disabled
+          onClick={onShowFlickFeedMissions}
           style={{
             display: 'inline-block',
             color: 'white',
@@ -1200,18 +1201,27 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
             fontWeight: 700,
             padding: '0.85rem 2rem',
             borderRadius: '2rem',
-            background: '#9ca3af',
-            border: '2px solid #6b7280',
-            boxShadow: '0 4px 12px rgba(156, 163, 175, 0.3)',
+            background: '#3b82f6',
+            border: '2px solid #2563eb',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
             minWidth: '180px',
             textAlign: 'center',
-            cursor: 'not-allowed',
-            fontFamily: "'Nunito', sans-serif",
-            opacity: 0.6
+            cursor: 'pointer',
+            fontFamily: "'Nunito', sans-serif"
           }}
-          title="Coming Soon!"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#2563eb';
+            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
         >
-          🔒 Practice Taking Control
+          Practice Taking Control →
         </button>
       </div>
     </div>

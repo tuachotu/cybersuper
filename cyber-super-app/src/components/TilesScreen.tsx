@@ -162,9 +162,9 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minWidth: '200px',
-                width: '200px',
-                height: '240px',
+                minWidth: '280px',
+                width: '300px',
+                height: '320px',
                 flexShrink: 0
               }}
               onMouseEnter={(e) => {
@@ -203,14 +203,14 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '120px'
+                height: '160px'
               }}>
                 <img
                   src={tile.icon}
                   alt={tile.title}
                   style={{
-                    width: '120px',
-                    height: '120px',
+                    width: '160px',
+                    height: '160px',
                     objectFit: 'contain',
                     display: 'block'
                   }}

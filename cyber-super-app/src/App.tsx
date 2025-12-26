@@ -33,6 +33,7 @@ function App() {
   const [currentProtocol, setCurrentProtocol] = useState<string>("");
   const [correctCount, setCorrectCount] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState<PracticeQuestionType[]>([]);
+  const [flickFeedMode, setFlickFeedMode] = useState<'traps' | 'missions'>('traps');
 
   const handleUnlockPowers = () => {
     setStage("tiles");
@@ -123,7 +124,13 @@ function App() {
     setStage("welcome");
   };
 
-  const handleShowFlickFeed = () => {
+  const handleShowFlickFeedTraps = () => {
+    setFlickFeedMode('traps');
+    setStage("flick-feed");
+  };
+
+  const handleShowFlickFeedMissions = () => {
+    setFlickFeedMode('missions');
     setStage("flick-feed");
   };
 
@@ -184,7 +191,8 @@ function App() {
           <TrainingScreen
             protocolId={currentProtocol}
             onBack={currentProtocol === 'app-hero' ? handleBackFromAppHero : handleBackToCaptainBrowsing}
-            onShowFlickFeed={currentProtocol === 'app-hero' ? handleShowFlickFeed : undefined}
+            onShowFlickFeedTraps={currentProtocol === 'app-hero' ? handleShowFlickFeedTraps : undefined}
+            onShowFlickFeedMissions={currentProtocol === 'app-hero' ? handleShowFlickFeedMissions : undefined}
             onShowParents={handleShowParents}
           />
         </PageTransition>
@@ -221,7 +229,7 @@ function App() {
 
       {stage === "flick-feed" && (
         <PageTransition>
-          <FlickFeedScreen onBack={handleBackFromFlickFeed} onShowParents={handleShowParents} />
+          <FlickFeedScreen onBack={handleBackFromFlickFeed} onShowParents={handleShowParents} viewMode={flickFeedMode} />
         </PageTransition>
       )}
 
