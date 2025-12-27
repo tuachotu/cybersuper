@@ -1,32 +1,13 @@
+import printablesManifest from '../data/printables.json';
+
 interface PrintablesScreenProps {
   onBack: () => void;
   onShowParents?: () => void;
 }
 
-// PDF files configuration - add your PDF files here
-const printables = [
-  {
-    id: 1,
-    title: "Cyber Super Sticker Sheet",
-    description: "Fun stickers to remind kids of their cyber superpowers!",
-    pdfUrl: "/printables/StickerSheet1.pdf",
-    thumbnailUrl: undefined,
-  },
-  {
-    id: 2,
-    title: "Cyber Super Mascot",
-    description: "Meet your Cyber Super friend!",
-    pdfUrl: "/printables/Mascot.pdf",
-    thumbnailUrl: undefined,
-  },
-  {
-    id: 3,
-    title: "Cyber Super Guide",
-    description: "Learn more about staying safe online!",
-    pdfUrl: "/printables/cybersuper.io.pdf",
-    thumbnailUrl: undefined,
-  },
-];
+// Printables are automatically loaded from the manifest
+// To update: run `npm run generate-printables` after adding PDFs to public/printables/
+const printables = printablesManifest;
 
 export default function PrintablesScreen({ onBack, onShowParents }: PrintablesScreenProps) {
   const handleDownload = (pdfUrl: string, title: string) => {
