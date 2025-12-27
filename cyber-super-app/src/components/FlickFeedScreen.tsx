@@ -18,8 +18,6 @@ export default function FlickFeedScreen({ onBack, onShowParents, viewMode = 'tra
   const [currentTrapIndex, setCurrentTrapIndex] = useState(0);
   const [currentScenario, setCurrentScenario] = useState(0); // 0 = Start, 1-3 = Missions, 4 = Accomplished
   const [showGroomPower, setShowGroomPower] = useState(false);
-  const [showMenuTap, setShowMenuTap] = useState(false);
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
   const feedRef = useRef<HTMLDivElement>(null);
   const [notificationPopups, setNotificationPopups] = useState<NotificationPopup[]>([]);
   const [showMainMenu, setShowMainMenu] = useState(false);
@@ -885,21 +883,6 @@ export default function FlickFeedScreen({ onBack, onShowParents, viewMode = 'tra
                   padding: '0.25rem'
                 }}>
                 ☰
-                {/* Tap Animation */}
-                {showMenuTap && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    background: 'rgba(255, 255, 255, 0.3)',
-                    animation: 'tap-ripple 0.6s ease-out',
-                    pointerEvents: 'none'
-                  }} />
-                )}
               </div>
 
               {/* Notification Bell */}

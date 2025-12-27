@@ -38,7 +38,7 @@ const protocols: ProtocolCard[] = [
   }
 ];
 
-export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPractice, visitedProtocols, onShowParents }: CaptainBrowsingScreenProps) {
+export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPractice, visitedProtocols: _visitedProtocols, onShowParents }: CaptainBrowsingScreenProps) {
   return (
     <div style={{
       minHeight: '100vh',

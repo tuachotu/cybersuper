@@ -14,6 +14,9 @@ import CaptainBrowsingScreen from "./components/CaptainBrowsingScreen";
 import WorkInProgressScreen from "./components/WorkInProgressScreen";
 import FlickFeedScreen from "./components/FlickFeedScreen";
 import PrintablesScreen from "./components/PrintablesScreen";
+import CalmCommanderOath from "./components/CalmCommanderOath";
+import CalmCommanderSituation1 from "./components/CalmCommanderSituation1";
+import CalmCommanderSituation2 from "./components/CalmCommanderSituation2";
 
 // Shuffle array helper function
 function shuffleArray<T>(array: T[]): T[] {
@@ -41,6 +44,11 @@ function App() {
 
   const handleSelectBrowsing = () => {
     setStage("captain-browsing");
+  };
+
+  const handleSelectCalmCommander = () => {
+    setCurrentProtocol("calm-commander");
+    setStage("training");
   };
 
   const handleSelectAppHero = () => {
@@ -142,6 +150,34 @@ function App() {
     setStage("printables");
   };
 
+  const handleShowCalmCommanderOath = () => {
+    setStage("calm-commander-oath");
+  };
+
+  const handleBackFromCalmCommanderOath = () => {
+    setStage("training");
+  };
+
+  const handleContinueFromCalmCommanderOath = () => {
+    setStage("calm-commander-situation-1");
+  };
+
+  const handleBackFromCalmCommanderSituation1 = () => {
+    setStage("calm-commander-oath");
+  };
+
+  const handleNextFromCalmCommanderSituation1 = () => {
+    setStage("calm-commander-situation-2");
+  };
+
+  const handleBackFromCalmCommanderSituation2 = () => {
+    setStage("calm-commander-situation-1");
+  };
+
+  const handleFinishCalmCommanderTraining = () => {
+    setStage("training");
+  };
+
   return (
     <>
       {stage === "welcome" && (
@@ -156,6 +192,7 @@ function App() {
         <PageTransition>
           <TilesScreen
             onSelectBrowsing={handleSelectBrowsing}
+            onSelectCalmCommander={handleSelectCalmCommander}
             onSelectAppHero={handleSelectAppHero}
             onShowParents={handleShowParents}
           />
@@ -190,9 +227,10 @@ function App() {
         <PageTransition>
           <TrainingScreen
             protocolId={currentProtocol}
-            onBack={currentProtocol === 'app-hero' ? handleBackFromAppHero : handleBackToCaptainBrowsing}
+            onBack={(currentProtocol === 'app-hero' || currentProtocol === 'calm-commander') ? handleBackFromAppHero : handleBackToCaptainBrowsing}
             onShowFlickFeedTraps={currentProtocol === 'app-hero' ? handleShowFlickFeedTraps : undefined}
             onShowFlickFeedMissions={currentProtocol === 'app-hero' ? handleShowFlickFeedMissions : undefined}
+            onShowCalmCommanderOath={currentProtocol === 'calm-commander' ? handleShowCalmCommanderOath : undefined}
             onShowParents={handleShowParents}
           />
         </PageTransition>
@@ -236,6 +274,36 @@ function App() {
       {stage === "printables" && (
         <PageTransition>
           <PrintablesScreen onBack={handleBackToHome} onShowParents={handleShowParents} />
+        </PageTransition>
+      )}
+
+      {stage === "calm-commander-oath" && (
+        <PageTransition>
+          <CalmCommanderOath
+            onBack={handleBackFromCalmCommanderOath}
+            onContinue={handleContinueFromCalmCommanderOath}
+            onShowParents={handleShowParents}
+          />
+        </PageTransition>
+      )}
+
+      {stage === "calm-commander-situation-1" && (
+        <PageTransition>
+          <CalmCommanderSituation1
+            onBack={handleBackFromCalmCommanderSituation1}
+            onShowParents={handleShowParents}
+            onNext={handleNextFromCalmCommanderSituation1}
+          />
+        </PageTransition>
+      )}
+
+      {stage === "calm-commander-situation-2" && (
+        <PageTransition>
+          <CalmCommanderSituation2
+            onBack={handleBackFromCalmCommanderSituation2}
+            onShowParents={handleShowParents}
+            onFinish={handleFinishCalmCommanderTraining}
+          />
         </PageTransition>
       )}
     </>

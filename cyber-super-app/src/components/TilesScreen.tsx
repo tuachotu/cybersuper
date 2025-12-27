@@ -1,5 +1,6 @@
 interface TilesScreenProps {
   onSelectBrowsing: () => void;
+  onSelectCalmCommander: () => void;
   onSelectAppHero: () => void;
   onShowParents: () => void;
 }
@@ -19,24 +20,26 @@ const tiles: Tile[] = [
     isActive: true,
   },
   {
+    id: "calm-commander",
+    title: "Calm Commander",
+    icon: "/CalmCommander.png",
+    isActive: true,
+  },
+  {
     id: "app-hero",
     title: "App Hero",
     icon: "/app-hero.png",
     isActive: true,
   },
-  {
-    id: "think-twice",
-    title: "Think Twice",
-    icon: "/smart-ai.png",
-    isActive: false,
-  },
 ];
 
-export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowParents }: TilesScreenProps) {
+export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, onSelectAppHero, onShowParents }: TilesScreenProps) {
   const handleTileClick = (tile: Tile) => {
     if (tile.isActive) {
       if (tile.id === 'super-browsing') {
         onSelectBrowsing();
+      } else if (tile.id === 'calm-commander') {
+        onSelectCalmCommander();
       } else if (tile.id === 'app-hero') {
         onSelectAppHero();
       }
