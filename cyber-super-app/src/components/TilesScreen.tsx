@@ -1,5 +1,6 @@
 interface TilesScreenProps {
   onSelectBrowsing: () => void;
+  onSelectCalmCommander: () => void;
   onSelectAppHero: () => void;
   onShowParents: () => void;
 }
@@ -19,24 +20,26 @@ const tiles: Tile[] = [
     isActive: true,
   },
   {
+    id: "calm-commander",
+    title: "Calm Commander",
+    icon: "/CalmCommander.png",
+    isActive: true,
+  },
+  {
     id: "app-hero",
     title: "App Hero",
     icon: "/app-hero.png",
     isActive: true,
   },
-  {
-    id: "think-twice",
-    title: "Think Twice",
-    icon: "/smart-ai.png",
-    isActive: false,
-  },
 ];
 
-export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowParents }: TilesScreenProps) {
+export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, onSelectAppHero, onShowParents }: TilesScreenProps) {
   const handleTileClick = (tile: Tile) => {
     if (tile.isActive) {
       if (tile.id === 'super-browsing') {
         onSelectBrowsing();
+      } else if (tile.id === 'calm-commander') {
+        onSelectCalmCommander();
       } else if (tile.id === 'app-hero') {
         onSelectAppHero();
       }
@@ -162,9 +165,9 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minWidth: '200px',
-                width: '200px',
-                height: '240px',
+                minWidth: '280px',
+                width: '300px',
+                height: '320px',
                 flexShrink: 0
               }}
               onMouseEnter={(e) => {
@@ -203,14 +206,14 @@ export default function TilesScreen({ onSelectBrowsing, onSelectAppHero, onShowP
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '120px'
+                height: '160px'
               }}>
                 <img
                   src={tile.icon}
                   alt={tile.title}
                   style={{
-                    width: '120px',
-                    height: '120px',
+                    width: '160px',
+                    height: '160px',
                     objectFit: 'contain',
                     display: 'block'
                   }}

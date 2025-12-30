@@ -38,8 +38,7 @@ const protocols: ProtocolCard[] = [
   }
 ];
 
-export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPractice, visitedProtocols, onShowParents }: CaptainBrowsingScreenProps) {
-  const allProtocolsVisited = protocols.every(protocol => visitedProtocols.includes(protocol.id));
+export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPractice, visitedProtocols: _visitedProtocols, onShowParents }: CaptainBrowsingScreenProps) {
   return (
     <div style={{
       minHeight: '100vh',
@@ -137,9 +136,9 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
         }}>
           {protocols.map((protocol) => (
             <div key={protocol.id} style={{
-              flex: '1 1 280px',
-              maxWidth: '320px',
-              minWidth: '260px'
+              flex: '1 1 300px',
+              maxWidth: '350px',
+              minWidth: '280px'
             }}>
               <div
                 style={{
@@ -274,8 +273,7 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
           </button>
 
           <button
-            onClick={allProtocolsVisited ? onPractice : undefined}
-            disabled={!allProtocolsVisited}
+            onClick={onPractice}
             style={{
               background: '#3b82f6',
               color: 'white',
@@ -284,29 +282,23 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
               padding: '1rem 2.5rem',
               borderRadius: '2rem',
               border: '2px solid #2563eb',
-              cursor: allProtocolsVisited ? 'pointer' : 'not-allowed',
+              cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-              fontFamily: "'Nunito', sans-serif",
-              opacity: allProtocolsVisited ? 1 : 0.6
+              fontFamily: "'Nunito', sans-serif"
             }}
             onMouseEnter={(e) => {
-              if (allProtocolsVisited) {
-                e.currentTarget.style.background = '#2563eb';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
-              }
+              e.currentTarget.style.background = '#2563eb';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
             }}
             onMouseLeave={(e) => {
-              if (allProtocolsVisited) {
-                e.currentTarget.style.background = '#3b82f6';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-              }
+              e.currentTarget.style.background = '#3b82f6';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
             }}
-            title={!allProtocolsVisited ? "Complete all three trainings to unlock!" : ""}
           >
-            {!allProtocolsVisited && "🔒 "}Practice Your Powers
+            Practice Your Powers
           </button>
         </div>
       </div>

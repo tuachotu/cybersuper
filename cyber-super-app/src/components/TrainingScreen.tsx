@@ -1,11 +1,13 @@
 interface TrainingScreenProps {
   protocolId: string;
   onBack: () => void;
-  onShowFlickFeed?: () => void;
+  onShowFlickFeedTraps?: () => void; // For "See the App Trap" button
+  onShowFlickFeedMissions?: () => void; // For "Practice Taking Control" button
+  onShowCalmCommanderOath?: () => void; // For "Begin Calm Training" button
   onShowParents?: () => void;
 }
 
-export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, onShowParents }: TrainingScreenProps) {
+export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTraps, onShowFlickFeedMissions, onShowCalmCommanderOath, onShowParents }: TrainingScreenProps) {
   const renderNoForce = () => (
     <div>
       {/* Title */}
@@ -1160,7 +1162,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
         </button>
 
         <button
-          onClick={onShowFlickFeed}
+          onClick={onShowFlickFeedTraps}
           style={{
             display: 'inline-block',
             color: 'white',
@@ -1192,7 +1194,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
         </button>
 
         <button
-          disabled
+          onClick={onShowFlickFeedMissions}
           style={{
             display: 'inline-block',
             color: 'white',
@@ -1200,18 +1202,192 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
             fontWeight: 700,
             padding: '0.85rem 2rem',
             borderRadius: '2rem',
-            background: '#9ca3af',
-            border: '2px solid #6b7280',
-            boxShadow: '0 4px 12px rgba(156, 163, 175, 0.3)',
+            background: '#3b82f6',
+            border: '2px solid #2563eb',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
             minWidth: '180px',
             textAlign: 'center',
-            cursor: 'not-allowed',
-            fontFamily: "'Nunito', sans-serif",
-            opacity: 0.6
+            cursor: 'pointer',
+            fontFamily: "'Nunito', sans-serif"
           }}
-          title="Coming Soon!"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#2563eb';
+            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
         >
-          🔒 Practice Taking Control
+          Practice Taking Control →
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderCalmCommander = () => (
+    <div>
+      {/* Title and Image - Side by Side */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '2rem',
+        marginBottom: '2rem',
+        flexWrap: 'wrap'
+      }}>
+        <img
+          src="/CalmCommander.png"
+          alt="Calm Commander"
+          style={{
+            width: '150px',
+            height: '150px',
+            objectFit: 'contain'
+          }}
+        />
+        <h1 style={{
+          fontSize: 'clamp(2rem, 4vw, 2.5rem)',
+          fontWeight: 900,
+          color: '#3b82f6',
+          margin: 0,
+          fontFamily: "'Nunito', sans-serif"
+        }}>
+          Calm Commander
+        </h1>
+      </div>
+
+      {/* Paragraph 1 */}
+      <p style={{
+        fontSize: '1.125rem',
+        lineHeight: '1.8',
+        color: '#374151',
+        marginBottom: '2rem',
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: 600
+      }}>
+        You see a post. It's shocking. Or exciting. Or makes you angry.
+        Your heart beats faster. Your fingers want to tap. Share. Comment. React. The screen is loud.
+        Your feelings get big. And suddenly, it feels urgent to do something.
+      </p>
+
+      {/* Paragraph 2 */}
+      <p style={{
+        fontSize: '1.125rem',
+        lineHeight: '1.8',
+        color: '#374151',
+        marginBottom: '2rem',
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: 600
+      }}>
+        Nothing strange is happening. The internet is doing what it was designed to do . push your emotions and rush your reactions. <strong>Big feelings make clicks happen faster than thinking.</strong>
+      </p>
+
+      {/* Power Box (Green) */}
+      <div style={{
+        background: 'white',
+        borderRadius: '1.5rem',
+        padding: '2rem',
+        marginBottom: '2rem',
+        border: '3px solid #10b981'
+      }}>
+        <h2 style={{
+          fontSize: '1.75rem',
+          fontWeight: 900,
+          color: '#065f46',
+          marginBottom: '1rem',
+          fontFamily: "'Nunito', sans-serif",
+          textAlign: 'center'
+        }}>
+          Your Power: Staying Calm
+        </h2>
+        <p style={{
+          fontSize: '1.125rem',
+          lineHeight: '1.8',
+          color: '#065f46',
+          fontFamily: "'Nunito', sans-serif",
+          fontWeight: 600,
+          textAlign: 'center',
+          margin: 0
+        }}>
+          When feelings are big, don't react.
+          Pause. Move on. Or ask a grown-up.
+          That's what Calm Commanders do.
+        </p>
+      </div>
+
+      {/* Action Buttons */}
+      <div style={{
+        display: 'flex',
+        gap: '1rem',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        marginTop: '2rem'
+      }}>
+        <button
+          onClick={onBack}
+          style={{
+            display: 'inline-block',
+            color: 'white',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            padding: '0.85rem 2rem',
+            borderRadius: '2rem',
+            background: '#3b82f6',
+            border: '2px solid #2563eb',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+            minWidth: '180px',
+            textAlign: 'center',
+            cursor: 'pointer',
+            fontFamily: "'Nunito', sans-serif"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#2563eb';
+            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          ← Back to Missions
+        </button>
+
+        <button
+          onClick={onShowCalmCommanderOath}
+          style={{
+            display: 'inline-block',
+            color: 'white',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            padding: '0.85rem 2rem',
+            borderRadius: '2rem',
+            background: '#3b82f6',
+            border: '2px solid #2563eb',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+            minWidth: '180px',
+            textAlign: 'center',
+            cursor: 'pointer',
+            fontFamily: "'Nunito', sans-serif"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#2563eb';
+            e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          Begin Calm Training
         </button>
       </div>
     </div>
@@ -1937,9 +2113,10 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeed, on
         {protocolId === 'triple-shield' && renderTripleShield()}
         {protocolId === 'never-ever' && renderNeverEver()}
         {protocolId === 'app-hero' && renderAppHero()}
+        {protocolId === 'calm-commander' && renderCalmCommander()}
 
-        {/* Back Button - Hidden for app-hero since it has its own button group */}
-        {protocolId !== 'app-hero' && (
+        {/* Back Button - Hidden for app-hero and calm-commander since they have their own button group */}
+        {protocolId !== 'app-hero' && protocolId !== 'calm-commander' && (
           <div style={{
             marginTop: '2rem',
             textAlign: 'center'

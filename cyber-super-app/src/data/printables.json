@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Mascot",
+    "description": "Printable resource: Mascot",
+    "pdfUrl": "/printables/Mascot.pdf",
+    "thumbnailUrl": null,
+    "filename": "Mascot.pdf"
+  },
+  {
+    "id": 2,
+    "title": "Powers2",
+    "description": "Printable resource: Powers2",
+    "pdfUrl": "/printables/Powers2.pdf",
+    "thumbnailUrl": null,
+    "filename": "Powers2.pdf"
+  },
+  {
+    "id": 3,
+    "title": "Powers3",
+    "description": "Printable resource: Powers3",
+    "pdfUrl": "/printables/Powers3.pdf",
+    "thumbnailUrl": null,
+    "filename": "Powers3.pdf"
+  },
+  {
+    "id": 4,
+    "title": "Sticker Sheet1",
+    "description": "Printable resource: Sticker Sheet1",
+    "pdfUrl": "/printables/StickerSheet1.pdf",
+    "thumbnailUrl": null,
+    "filename": "StickerSheet1.pdf"
+  },
+  {
+    "id": 5,
+    "title": "cybersuper.io",
+    "description": "Printable resource: cybersuper.io",
+    "pdfUrl": "/printables/cybersuper.io.pdf",
+    "thumbnailUrl": null,
+    "filename": "cybersuper.io.pdf"
+  }
+]
