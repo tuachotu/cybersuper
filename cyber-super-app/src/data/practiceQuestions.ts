@@ -1,3 +1,5 @@
+import type { QuestionVariants } from '../persona';
+
 export type VisualType =
   | "browser-permission"
   | "download-prompt"
@@ -21,6 +23,7 @@ export interface PracticeQuestion {
   popupText: string;
   userActions: string[]; // What user can do: ["Block", "Allow"], ["Keep", "Discard"], ["Close Tab", "Click OK"], etc.
   correctAction: string; // Which action is safe
+  variants: QuestionVariants;
 }
 
 export const practiceQuestions: PracticeQuestion[] = [
@@ -36,7 +39,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "coolwebsite.com",
     popupText: "wants to show notifications",
     userActions: ["Block", "Allow"],
-    correctAction: "Block"
+    correctAction: "Block",
+    variants: {
+      kids: {
+        problemStatement: "This site wants to show notifications. Allow / Block?",
+        explanation: "Random notification requests are rarely needed and can be unsafe. The safe choice is to block them.",
+      },
+      senior: {
+        problemStatement: "This site wants to show notifications. Allow / Block?",
+        explanation: "Random notification requests are rarely needed and can be unsafe. The safe choice is to block them.",
+      },
+    },
   },
   {
     scenarioId: "S02",
@@ -50,7 +63,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "unknown-site.net",
     popupText: "mystery-file.exe (2.4 MB)",
     userActions: ["Keep", "Discard"],
-    correctAction: "Discard"
+    correctAction: "Discard",
+    variants: {
+      kids: {
+        problemStatement: "A file is downloading, and the browser asks if you want to keep it.",
+        explanation: "If you didn't start the download yourself, it could be harmful. Choosing NO keeps your device safe.",
+      },
+      senior: {
+        problemStatement: "A file is downloading, and the browser asks if you want to keep it.",
+        explanation: "If you didn't start the download yourself, it could be harmful. Choosing NO keeps your device safe.",
+      },
+    },
   },
   {
     scenarioId: "S03",
@@ -64,7 +87,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "fastpc-optimizer.com",
     popupText: "Your computer is running slow! Click YES to speed it up now.",
     userActions: ["Yes", "No"],
-    correctAction: "No"
+    correctAction: "No",
+    variants: {
+      kids: {
+        problemStatement: "A pop-up says your computer is slow and tells you to click YES to fix it.",
+        explanation: "Pop-ups claiming your computer is broken are almost always fake. NO is the correct response.",
+      },
+      senior: {
+        problemStatement: "A pop-up says your computer is slow and tells you to click YES to fix it.",
+        explanation: "Pop-ups claiming your computer is broken are almost always fake. NO is the correct response.",
+      },
+    },
   },
   {
     scenarioId: "S04",
@@ -78,7 +111,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "random-games.com",
     popupText: "wants to use your camera",
     userActions: ["Block", "Allow"],
-    correctAction: "Block"
+    correctAction: "Block",
+    variants: {
+      kids: {
+        problemStatement: "A website asks to use your camera even though you're not in a video call.",
+        explanation: "If the camera request wasn't expected, decline it. Websites should not access your camera randomly.",
+      },
+      senior: {
+        problemStatement: "A website asks to use your camera even though you're not in a video call.",
+        explanation: "If the camera request wasn't expected, decline it. Websites should not access your camera randomly.",
+      },
+    },
   },
   {
     scenarioId: "S05",
@@ -92,7 +135,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "fun-quizzes.net",
     popupText: "Enter your birthday to see your results!",
     userActions: ["Enter Info", "Close Tab", "Ask Parent"],
-    correctAction: "Ask Parent"
+    correctAction: "Ask Parent",
+    variants: {
+      kids: {
+        problemStatement: "A website suddenly asks for your birthday to continue.",
+        explanation: "This is unexpected. Use the Triple Shield: Ask a parent first before typing personal details.",
+      },
+      senior: {
+        problemStatement: "A website suddenly asks for your birthday to continue.",
+        explanation: "This is unexpected. Use the Triple Shield: Ask a parent first before typing personal details.",
+      },
+    },
   },
   {
     scenarioId: "S06",
@@ -106,7 +159,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "virus-alert-system.com",
     popupText: "⚠️ WARNING! Your device is infected with 5 viruses! Click here to remove them now!",
     userActions: ["Click Here", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A webpage loads and shows a warning that your device is infected.",
+        explanation: "Fake virus pop-ups are common. Close the tab immediately — part of the Triple Shield.",
+      },
+      senior: {
+        problemStatement: "A webpage loads and shows a warning that your device is infected.",
+        explanation: "Fake virus pop-ups are common. Close the tab immediately — part of the Triple Shield.",
+      },
+    },
   },
   {
     scenarioId: "S07",
@@ -120,7 +183,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "strange-website.com",
     popupText: "[Uncomfortable content displayed]",
     userActions: ["Stay on Page", "Close Tab & Tell Parent"],
-    correctAction: "Close Tab & Tell Parent"
+    correctAction: "Close Tab & Tell Parent",
+    variants: {
+      kids: {
+        problemStatement: "You open a website and something appears that makes you uncomfortable.",
+        explanation: "If something feels wrong, tell a parent. That's the 'Tell' part of the Triple Shield.",
+      },
+      senior: {
+        problemStatement: "You open a website and something appears that makes you uncomfortable.",
+        explanation: "If something feels wrong, tell a parent. That's the 'Tell' part of the Triple Shield.",
+      },
+    },
   },
   {
     scenarioId: "S08",
@@ -134,7 +207,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "weirdsit3.xyz",
     popupText: "You've been redirected to an unexpected page...",
     userActions: ["Explore Page", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A link opens a strange page you didn't mean to visit.",
+        explanation: "When something unexpected opens, close it immediately. That's the 'Close' part of your shield.",
+      },
+      senior: {
+        problemStatement: "A link opens a strange page you didn't mean to visit.",
+        explanation: "When something unexpected opens, close it immediately. That's the 'Close' part of your shield.",
+      },
+    },
   },
   {
     scenarioId: "S09",
@@ -148,7 +231,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "MultiplayerQuest",
     popupText: "CoolPlayer123: Hey! What's your age?",
     userActions: ["Tell Them", "Don't Reply"],
-    correctAction: "Don't Reply"
+    correctAction: "Don't Reply",
+    variants: {
+      kids: {
+        problemStatement: "A game chat asks, 'What's your age?'",
+        explanation: "Your age is personal information. Never share it in chats or online games.",
+      },
+      senior: {
+        problemStatement: "A game chat asks, 'What's your age?'",
+        explanation: "Your age is personal information. Never share it in chats or online games.",
+      },
+    },
   },
   {
     scenarioId: "S10",
@@ -162,7 +255,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "free-games-unlimited.com",
     popupText: "Enter your full name to unlock premium features!",
     userActions: ["Enter Name", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A website asks for your full name to continue an activity.",
+        explanation: "Never share your real name online unless a parent approves.",
+      },
+      senior: {
+        problemStatement: "A website asks for your full name to continue an activity.",
+        explanation: "Never share your real name online unless a parent approves.",
+      },
+    },
   },
   {
     scenarioId: "S11",
@@ -176,7 +279,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "ChatZone",
     popupText: "Stranger2847: Turn on your camera so I know it's you",
     userActions: ["Turn On Camera", "Refuse & Report"],
-    correctAction: "Refuse & Report"
+    correctAction: "Refuse & Report",
+    variants: {
+      kids: {
+        problemStatement: "Someone online says, 'Turn on your camera so I know it's you.'",
+        explanation: "Never turn on your camera for strangers. Video is personal information.",
+      },
+      senior: {
+        problemStatement: "Someone online says, 'Turn on your camera so I know it's you.'",
+        explanation: "Never turn on your camera for strangers. Video is personal information.",
+      },
+    },
   },
   {
     scenarioId: "S12",
@@ -190,7 +303,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "win-prizes-now.com",
     popupText: "Congratulations! Enter your home address to claim your FREE GIFT!",
     userActions: ["Enter Address", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A website wants your home address for a 'free gift.'",
+        explanation: "Your address is highly private. Never share it with websites offering prizes.",
+      },
+      senior: {
+        problemStatement: "A website wants your home address for a 'free gift.'",
+        explanation: "Your address is highly private. Never share it with websites offering prizes.",
+      },
+    },
   },
   {
     scenarioId: "S13",
@@ -204,7 +327,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "speedbooster-pro.net",
     popupText: "Your device is slow! Install SpeedBooster Pro now?",
     userActions: ["Install", "Cancel"],
-    correctAction: "Cancel"
+    correctAction: "Cancel",
+    variants: {
+      kids: {
+        problemStatement: "A website shows a message: 'We can speed up your device! Install now?'",
+        explanation: "These pop-ups often install unsafe software. Decline anything you didn't ask for.",
+      },
+      senior: {
+        problemStatement: "A website shows a message: 'We can speed up your device! Install now?'",
+        explanation: "These pop-ups often install unsafe software. Decline anything you didn't ask for.",
+      },
+    },
   },
   {
     scenarioId: "S14",
@@ -218,7 +351,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "mystery-page.org",
     popupText: "wants to use your microphone",
     userActions: ["Block", "Allow"],
-    correctAction: "Block"
+    correctAction: "Block",
+    variants: {
+      kids: {
+        problemStatement: "A website you've never visited asks: 'Allow this site to check your microphone?'",
+        explanation: "Microphone access is sensitive. Decline unless you specifically need it.",
+      },
+      senior: {
+        problemStatement: "A website you've never visited asks: 'Allow this site to check your microphone?'",
+        explanation: "Microphone access is sensitive. Decline unless you specifically need it.",
+      },
+    },
   },
   {
     scenarioId: "S15",
@@ -232,7 +375,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "Chrome Web Store",
     popupText: "Free Emoji Pack wants to: Read and change all your data on websites you visit",
     userActions: ["Add Extension", "Cancel"],
-    correctAction: "Cancel"
+    correctAction: "Cancel",
+    variants: {
+      kids: {
+        problemStatement: "A browser extension says it will give you free emojis if you add it.",
+        explanation: "Extensions can access a lot of your data. Never install one without permission.",
+      },
+      senior: {
+        problemStatement: "A browser extension says it will give you free emojis if you add it.",
+        explanation: "Extensions can access a lot of your data. Never install one without permission.",
+      },
+    },
   },
   {
     scenarioId: "S16",
@@ -246,7 +399,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "System Alert",
     popupText: "Unknown application wants to run on your computer",
     userActions: ["Run", "Block"],
-    correctAction: "Block"
+    correctAction: "Block",
+    variants: {
+      kids: {
+        problemStatement: "A page pops up asking if it can run an app you did not download.",
+        explanation: "Apps should never run automatically. Reject unexpected requests.",
+      },
+      senior: {
+        problemStatement: "A page pops up asking if it can run an app you did not download.",
+        explanation: "Apps should never run automatically. Reject unexpected requests.",
+      },
+    },
   },
   {
     scenarioId: "S17",
@@ -260,7 +423,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "click-here-now.biz",
     popupText: "[Page with flashing ads: CLICK HERE! WIN NOW! URGENT!]",
     userActions: ["Click Ads", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "You click a link and suddenly land on a website full of ads and flashing warnings.",
+        explanation: "Close the tab immediately when a page looks unsafe or confusing.",
+      },
+      senior: {
+        problemStatement: "You click a link and suddenly land on a website full of ads and flashing warnings.",
+        explanation: "Close the tab immediately when a page looks unsafe or confusing.",
+      },
+    },
   },
   {
     scenarioId: "S18",
@@ -274,7 +447,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "not-what-you-expected.ru",
     popupText: "This doesn't look like what your friend described...",
     userActions: ["Continue Browsing", "Close Tab & Ask Friend"],
-    correctAction: "Close Tab & Ask Friend"
+    correctAction: "Close Tab & Ask Friend",
+    variants: {
+      kids: {
+        problemStatement: "A friend sends you a link, but it opens to a page that looks nothing like you expected.",
+        explanation: "Unexpected pages can be risky. Close the page and ask before continuing.",
+      },
+      senior: {
+        problemStatement: "A friend sends you a link, but it opens to a page that looks nothing like you expected.",
+        explanation: "Unexpected pages can be risky. Close the page and ask before continuing.",
+      },
+    },
   },
   {
     scenarioId: "S19",
@@ -288,7 +471,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "account-security-alert.com",
     popupText: "⚠️ URGENT! Your account will be deleted in 24 hours unless you verify now!",
     userActions: ["Click Here", "Close Tab & Tell Parent"],
-    correctAction: "Close Tab & Tell Parent"
+    correctAction: "Close Tab & Tell Parent",
+    variants: {
+      kids: {
+        problemStatement: "You see a message saying 'Your account will be deleted unless you click here!'",
+        explanation: "Scare messages are often fake. Close the page and tell a parent.",
+      },
+      senior: {
+        problemStatement: "You see a message saying 'Your account will be deleted unless you click here!'",
+        explanation: "Scare messages are often fake. Close the page and tell a parent.",
+      },
+    },
   },
   {
     scenarioId: "S20",
@@ -302,7 +495,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "g00gle.com (not google.com)",
     popupText: "This site looks suspicious and different from what you expected...",
     userActions: ["Stay on Site", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "You accidentally type the wrong website name and end up somewhere strange.",
+        explanation: "Mistyped URLs can lead to unsafe sites. Close it immediately.",
+      },
+      senior: {
+        problemStatement: "You accidentally type the wrong website name and end up somewhere strange.",
+        explanation: "Mistyped URLs can lead to unsafe sites. Close it immediately.",
+      },
+    },
   },
   {
     scenarioId: "S21",
@@ -316,7 +519,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "BattleArena Online",
     popupText: "XxGamerxX: Which city do you live in?",
     userActions: ["Tell Them", "Don't Reply"],
-    correctAction: "Don't Reply"
+    correctAction: "Don't Reply",
+    variants: {
+      kids: {
+        problemStatement: "A user in an online game asks, 'Which city do you live in?'",
+        explanation: "Location information should never be shared with people online.",
+      },
+      senior: {
+        problemStatement: "A user in an online game asks, 'Which city do you live in?'",
+        explanation: "Location information should never be shared with people online.",
+      },
+    },
   },
   {
     scenarioId: "S22",
@@ -330,7 +543,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "student-connect.info",
     popupText: "What school do you go to?",
     userActions: ["Enter School Name", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A form on a random website asks you to type your school name.",
+        explanation: "Your school counts as personal info. Don't share it unless a parent approves.",
+      },
+      senior: {
+        problemStatement: "A form on a random website asks you to type your school name.",
+        explanation: "Your school counts as personal info. Don't share it unless a parent approves.",
+      },
+    },
   },
   {
     scenarioId: "S23",
@@ -344,7 +567,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "buzzquizzes.com",
     popupText: "Enter your phone number to see your quiz results!",
     userActions: ["Enter Phone Number", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "An online quiz asks for your phone number 'to see your results.'",
+        explanation: "Quizzes don't need your phone number. Don't share private contact info.",
+      },
+      senior: {
+        problemStatement: "An online quiz asks for your phone number 'to see your results.'",
+        explanation: "Quizzes don't need your phone number. Don't share private contact info.",
+      },
+    },
   },
   {
     scenarioId: "S24",
@@ -358,7 +591,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "GameWorld Chat",
     popupText: "Unknown_User: Send me a photo so I know you're real",
     userActions: ["Send Photo", "Refuse & Block"],
-    correctAction: "Refuse & Block"
+    correctAction: "Refuse & Block",
+    variants: {
+      kids: {
+        problemStatement: "A stranger in a game says, 'Send me a photo so I know you're real.'",
+        explanation: "Never send photos to strangers online, even if they seem friendly.",
+      },
+      senior: {
+        problemStatement: "A stranger in a game says, 'Send me a photo so I know you're real.'",
+        explanation: "Never send photos to strangers online, even if they seem friendly.",
+      },
+    },
   },
   {
     scenarioId: "S25",
@@ -372,7 +615,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "sketchy-deals.com",
     popupText: "This site wants to track your activity across other websites",
     userActions: ["Accept Tracking", "Reject Tracking"],
-    correctAction: "Reject Tracking"
+    correctAction: "Reject Tracking",
+    variants: {
+      kids: {
+        problemStatement: "A website you barely know asks: 'Allow this site to track your browsing activity?'",
+        explanation: "Tracking lets websites collect your data. Decline any request you didn't expect.",
+      },
+      senior: {
+        problemStatement: "A website you barely know asks: 'Allow this site to track your browsing activity?'",
+        explanation: "Tracking lets websites collect your data. Decline any request you didn't expect.",
+      },
+    },
   },
   {
     scenarioId: "S26",
@@ -386,7 +639,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "free-prizes-winner.com",
     popupText: "🎉 Congratulations! You've won a FREE iPhone! Click YES to claim now!",
     userActions: ["Yes", "No"],
-    correctAction: "No"
+    correctAction: "No",
+    variants: {
+      kids: {
+        problemStatement: "A pop-up appears saying, 'Click YES to claim your free prize!'",
+        explanation: "Prize pop-ups are almost always scams. Choosing NO keeps you safe.",
+      },
+      senior: {
+        problemStatement: "A pop-up appears saying, 'Click YES to claim your free prize!'",
+        explanation: "Prize pop-ups are almost always scams. Choosing NO keeps you safe.",
+      },
+    },
   },
   {
     scenarioId: "S27",
@@ -400,7 +663,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "system-critical-error.com",
     popupText: "🔊 BEEP! CRITICAL SYSTEM ERROR! Your device has been compromised! Call this number immediately!",
     userActions: ["Call Number", "Close Tab & Tell Parent"],
-    correctAction: "Close Tab & Tell Parent"
+    correctAction: "Close Tab & Tell Parent",
+    variants: {
+      kids: {
+        problemStatement: "You hear a loud beep and a pop-up says your device has a 'critical issue.'",
+        explanation: "Scary alerts are designed to trick you. Close the page and tell a parent.",
+      },
+      senior: {
+        problemStatement: "You hear a loud beep and a pop-up says your device has a 'critical issue.'",
+        explanation: "Scary alerts are designed to trick you. Close the page and tell a parent.",
+      },
+    },
   },
   {
     scenarioId: "S28",
@@ -414,7 +687,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "avatar-maker-pro.com",
     popupText: "Upload a photo to create your custom avatar!",
     userActions: ["Upload Photo", "Skip & Use Default"],
-    correctAction: "Skip & Use Default"
+    correctAction: "Skip & Use Default",
+    variants: {
+      kids: {
+        problemStatement: "A site asks you to upload a picture 'to customize your avatar.'",
+        explanation: "Uploading real photos gives away personal information. Don't share images without permission.",
+      },
+      senior: {
+        problemStatement: "A site asks you to upload a picture 'to customize your avatar.'",
+        explanation: "Uploading real photos gives away personal information. Don't share images without permission.",
+      },
+    },
   },
   {
     scenarioId: "S29",
@@ -428,7 +711,17 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "auto-video-site.tv",
     popupText: "[Video playing automatically with loud sound]",
     userActions: ["Keep Watching", "Close Tab"],
-    correctAction: "Close Tab"
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "You end up on a website that plays a video automatically without you clicking anything.",
+        explanation: "Unexpected auto-play can be a red flag. Close the page to stay safe.",
+      },
+      senior: {
+        problemStatement: "You end up on a website that plays a video automatically without you clicking anything.",
+        explanation: "Unexpected auto-play can be a red flag. Close the page to stay safe.",
+      },
+    },
   },
   {
     scenarioId: "S30",
@@ -442,6 +735,16 @@ export const practiceQuestions: PracticeQuestion[] = [
     websiteName: "get-rewards-survey.com",
     popupText: "Enter your email and age to receive a $50 gift card!",
     userActions: ["Enter Info", "Close Tab"],
-    correctAction: "Close Tab"
-  }
+    correctAction: "Close Tab",
+    variants: {
+      kids: {
+        problemStatement: "A survey promises a reward if you give your email address and age.",
+        explanation: "Surveys often try to collect private data. Never share personal details for rewards.",
+      },
+      senior: {
+        problemStatement: "A survey promises a reward if you give your email address and age.",
+        explanation: "Surveys often try to collect private data. Never share personal details for rewards.",
+      },
+    },
+  },
 ];

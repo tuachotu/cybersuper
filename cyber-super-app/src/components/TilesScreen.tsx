@@ -1,3 +1,5 @@
+import { usePersona } from "../persona";
+
 interface TilesScreenProps {
   onSelectBrowsing: () => void;
   onSelectCalmCommander: () => void;
@@ -12,28 +14,29 @@ interface Tile {
   isActive: boolean;
 }
 
-const tiles: Tile[] = [
-  {
-    id: "super-browsing",
-    title: "Captain Browsing",
-    icon: "/super-browsing.png",
-    isActive: true,
-  },
-  {
-    id: "calm-commander",
-    title: "Calm Commander",
-    icon: "/CalmCommander.png",
-    isActive: true,
-  },
-  {
-    id: "app-hero",
-    title: "App Hero",
-    icon: "/app-hero.png",
-    isActive: true,
-  },
-];
-
 export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, onSelectAppHero, onShowParents }: TilesScreenProps) {
+  const { text, images, theme } = usePersona();
+
+  const tiles: Tile[] = [
+    {
+      id: "super-browsing",
+      title: text.tiles.tiles.captainBrowsing,
+      icon: images.tileIcons.captainBrowsing,
+      isActive: true,
+    },
+    {
+      id: "calm-commander",
+      title: text.tiles.tiles.calmCommander,
+      icon: images.tileIcons.calmCommander,
+      isActive: true,
+    },
+    {
+      id: "app-hero",
+      title: text.tiles.tiles.appHero,
+      icon: images.tileIcons.appHero,
+      isActive: true,
+    },
+  ];
   const handleTileClick = (tile: Tile) => {
     if (tile.isActive) {
       if (tile.id === 'super-browsing') {
@@ -126,7 +129,7 @@ export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, o
           marginBottom: '4rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Choose Your Mission
+          {text.tiles.heading}
         </h1>
 
         {/* Tiles - Horizontal Layout */}
@@ -156,8 +159,8 @@ export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, o
                 padding: '2rem 1.5rem',
                 borderRadius: '1.5rem',
                 border: '5px solid white',
-                background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
-                boxShadow: '0 10px 30px rgba(255, 107, 53, 0.5)',
+                background: theme.primaryGradient,
+                boxShadow: `0 10px 30px ${theme.primaryShadow}`,
                 transform: 'scale(1)',
                 transition: 'all 0.3s ease',
                 cursor: tile.isActive ? 'pointer' : 'not-allowed',
@@ -173,7 +176,7 @@ export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, o
               onMouseEnter={(e) => {
                 if (tile.isActive) {
                   e.currentTarget.style.transform = 'scale(1.03) translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 20px 50px rgba(255, 107, 53, 0.8), 0 0 30px rgba(255, 107, 53, 0.5)';
+                  e.currentTarget.style.boxShadow = `0 20px 50px ${theme.primaryShadowHover}, 0 0 30px ${theme.primaryShadow}`;
                 } else {
                   e.currentTarget.style.animation = 'shake 0.5s ease-in-out';
                 }
@@ -181,7 +184,7 @@ export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, o
               onMouseLeave={(e) => {
                 if (tile.isActive) {
                   e.currentTarget.style.transform = 'scale(1) translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.5)';
+                  e.currentTarget.style.boxShadow = `0 10px 30px ${theme.primaryShadow}`;
                 } else {
                   e.currentTarget.style.animation = '';
                 }
@@ -282,7 +285,7 @@ export default function TilesScreen({ onSelectBrowsing, onSelectCalmCommander, o
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            🏠 Back Home
+            {text.tiles.backButton}
           </button>
         </div>
       </div>

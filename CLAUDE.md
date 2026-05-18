@@ -19,21 +19,27 @@ A React TypeScript application teaching kids (ages 7-11) safe browsing practices
 - **Tech Stack**: React 19 + TypeScript + Vite + TailwindCSS v4
 - **State Machine**: The app uses a stage-based navigation system controlled by `App.tsx`:
   - `welcome` → Initial landing screen
-  - `tiles` → Main menu for selecting superpowers
+  - `tiles` → Main menu (4 superpowers: Captain Browsing, Calm Commander, App Hero, Parents)
   - `captain-browsing` → Protocol selection hub (tracks visited protocols)
-  - `training` → Individual protocol training content
+  - `training` → Individual protocol training content (shared by captain-browsing protocols, app-hero, calm-commander)
   - `practice` → Practice questions with intro screen (tracks correct count, shuffles questions)
   - `practice-complete` → Practice completion screen
+  - `flick-feed` → App Hero sub-screen for traps or missions (mode set by `flickFeedMode`)
+  - `calm-commander-oath` → Calm Commander sub-flow: oath screen
+  - `calm-commander-situation-1` → Calm Commander sub-flow: first scenario
+  - `calm-commander-situation-2` → Calm Commander sub-flow: second scenario
+  - `printables` → Printable resources screen
   - `parents` → Parent information screen
   - `work-in-progress` → Placeholder for incomplete features
 
 - **State Management**: App.tsx manages:
   - `stage`: Current screen/stage in the flow
-  - `visitedProtocols`: Array tracking which protocols user has completed
-  - `currentProtocol`: ID of the protocol being trained
+  - `currentProtocol`: ID of the active protocol (`"app-hero"`, `"calm-commander"`, or a captain-browsing protocol ID)
+  - `visitedProtocols`: Array tracking which protocols the user has completed
+  - `flickFeedMode`: `'traps' | 'missions'` — controls what FlickFeedScreen renders
   - `practiceQuestionIndex`: Current question in practice mode
-  - `correctCount`: Number of correct answers in practice mode
-  - `showPracticeIntro`: Boolean to toggle practice intro screen
+  - `correctCount`: Number of correct answers in practice mode (win condition: ≥10)
+  - `showPracticeIntro`: Boolean to toggle the BraveModeIntro screen before questions
   - `shuffledQuestions`: Randomized practice question array
 
 - **Components**: Screen-based components in `src/components/` with PageTransition wrapper
@@ -68,12 +74,15 @@ npm run preview
 ```
 
 ### Key Files
-- `src/App.tsx` - Main state machine with stage-based navigation
-- `src/types.ts` - TypeScript type definitions (Stage, BraveQuestion)
-- `src/data/practiceQuestions.ts` - Practice question bank with visual types and interactions
-- `src/components/TrainingScreen.tsx` - Renders content for each protocol based on protocolId
-- `src/components/CaptainBrowsingScreen.tsx` - Protocol selection hub
-- `vite.config.ts` - Build configuration with subpath support
+- `src/App.tsx` - Main state machine with all stage transitions and handler functions
+- `src/types.ts` - `Stage` union type and `BraveQuestion` type (`BraveQuestion` is legacy)
+- `src/data/practiceQuestions.ts` - Practice question bank (`PracticeQuestion` type defined here)
+- `src/components/TrainingScreen.tsx` - Renders content for each protocol based on `protocolId`
+- `src/components/CaptainBrowsingScreen.tsx` - Protocol selection hub with visited state
+- `src/components/FlickFeedScreen.tsx` - App Hero sub-screen (traps vs missions view)
+- `src/components/CalmCommanderOath.tsx`, `CalmCommanderSituation1.tsx`, `CalmCommanderSituation2.tsx` - Calm Commander multi-screen flow
+- `src/components/PrintablesScreen.tsx` - Printable resources
+- `vite.config.ts` - Build configuration with subpath support (`base: './'`)
 - `tsconfig.app.json` - TypeScript compiler options
 
 ### TypeScript Configuration

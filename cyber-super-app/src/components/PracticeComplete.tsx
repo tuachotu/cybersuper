@@ -1,3 +1,5 @@
+import { usePersona } from "../persona";
+
 interface PracticeCompleteProps {
   onRetry: () => void;
   onBackToStart: () => void;
@@ -5,6 +7,7 @@ interface PracticeCompleteProps {
 }
 
 export default function PracticeComplete({ onRetry, onBackToStart, onShowParents: _onShowParents }: PracticeCompleteProps) {
+  const { text, theme } = usePersona();
   return (
     <div style={{
       minHeight: '100vh',
@@ -45,18 +48,18 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
           marginBottom: '1rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Congratulations!
+          {text.practiceComplete.congratsHeading}
         </h1>
 
         {/* Title Earned */}
         <div style={{
-          background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
+          background: theme.primaryGradient,
           borderRadius: '1.5rem',
           padding: '2rem',
           margin: '2rem auto',
           maxWidth: '600px',
           border: '4px solid white',
-          boxShadow: '0 10px 30px rgba(255, 107, 53, 0.4)'
+          boxShadow: `0 10px 30px ${theme.primaryShadow}`
         }}>
           <p style={{
             fontSize: '1rem',
@@ -76,7 +79,7 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
             fontFamily: "'Nunito', sans-serif",
             textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
           }}>
-            CAPTAIN BROWSER!
+            {text.practiceComplete.earnedTitle}
           </p>
         </div>
 
@@ -95,7 +98,7 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
             fontWeight: 600,
             marginBottom: '1rem'
           }}>
-            You've successfully completed your training by making <strong style={{ color: '#10b981' }}>10 safe choices</strong>!
+            {text.practiceComplete.body1}
           </p>
 
           <p style={{
@@ -104,7 +107,7 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
             color: '#6b7280',
             fontFamily: "'Nunito', sans-serif"
           }}>
-            You've proven you can use <strong>The NO Force</strong>, <strong>The Triple Shield</strong>, and <strong>The Never-Ever Rules</strong> to stay safe online.
+            {text.practiceComplete.body2}
           </p>
         </div>
 
@@ -181,7 +184,7 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
           <button
             onClick={onRetry}
             style={{
-              background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
+              background: theme.primaryGradient,
               color: 'white',
               fontWeight: 900,
               fontSize: '1.125rem',
@@ -190,19 +193,19 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
               border: '4px solid white',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              boxShadow: '0 10px 30px rgba(255, 107, 53, 0.5)',
+              boxShadow: `0 10px 30px ${theme.primaryShadow}`,
               fontFamily: "'Nunito', sans-serif"
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.05) translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 107, 53, 0.7)';
+              e.currentTarget.style.boxShadow = `0 15px 40px ${theme.primaryShadowHover}`;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1) translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.5)';
+              e.currentTarget.style.boxShadow = `0 10px 30px ${theme.primaryShadow}`;
             }}
           >
-            Practice Again →
+            {text.practiceComplete.retryButton}
           </button>
 
           <button
@@ -231,7 +234,7 @@ export default function PracticeComplete({ onRetry, onBackToStart, onShowParents
               e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
             }}
           >
-            ← Back to Missions
+            {text.practiceComplete.backButton}
           </button>
         </div>
       </div>

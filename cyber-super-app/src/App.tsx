@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type { Stage } from "./types";
+import type { PersonaId } from "./persona";
+import { PersonaProvider } from "./persona";
 import { practiceQuestions } from "./data/practiceQuestions";
 import type { PracticeQuestion as PracticeQuestionType } from "./data/practiceQuestions";
 import PageTransition from "./components/PageTransition";
@@ -28,7 +30,13 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-function App() {
+// Apply persona-specific text to a question
+function selectQuestionVariant(question: PracticeQuestionType, persona: PersonaId): PracticeQuestionType {
+  const variant = question.variants[persona];
+  return { ...question, problemStatement: variant.problemStatement, explanation: variant.explanation };
+}
+
+function App({ persona }: { persona: PersonaId }) {
   const [stage, setStage] = useState<Stage>("welcome");
   const [practiceQuestionIndex, setPracticeQuestionIndex] = useState(0);
   const [showPracticeIntro, setShowPracticeIntro] = useState(true);
@@ -90,7 +98,7 @@ function App() {
     setShowPracticeIntro(true);
     setPracticeQuestionIndex(0);
     setCorrectCount(0);
-    setShuffledQuestions(shuffleArray(practiceQuestions));
+    setShuffledQuestions(shuffleArray(practiceQuestions).map(q => selectQuestionVariant(q, persona)));
   };
 
   const handleStartPractice = () => {
@@ -113,7 +121,7 @@ function App() {
     setPracticeQuestionIndex(0);
     setCorrectCount(0);
     setShowPracticeIntro(true);
-    setShuffledQuestions(shuffleArray(practiceQuestions));
+    setShuffledQuestions(shuffleArray(practiceQuestions).map(q => selectQuestionVariant(q, persona)));
     setStage("practice");
   };
 
@@ -179,7 +187,7 @@ function App() {
   };
 
   return (
-    <>
+    <PersonaProvider persona={persona}>
       {stage === "welcome" && (
         <WelcomeScreen
           onStart={handleUnlockPowers}
@@ -306,7 +314,7 @@ function App() {
           />
         </PageTransition>
       )}
-    </>
+    </PersonaProvider>
   );
 }
 

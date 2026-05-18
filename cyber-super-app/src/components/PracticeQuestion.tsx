@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import type { PracticeQuestion as PracticeQuestionType } from "../data/practiceQuestions";
+import { usePersona } from "../persona";
 
 interface PracticeQuestionProps {
   question: PracticeQuestionType;
@@ -20,11 +21,12 @@ export default function PracticeQuestion({
 }: PracticeQuestionProps) {
   const [selectedAction, setSelectedAction] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const { text, images } = usePersona();
 
   // Use NotQuite or Notquite2 randomly for wrong answers (memoized per question)
   const notQuiteImage = useMemo(() =>
-    Math.random() > 0.5 ? '/NotQuite.png' : '/Notquite2.png',
-    [question.scenarioId]
+    Math.random() > 0.5 ? images.feedbackWrong1 : images.feedbackWrong2,
+    [question.scenarioId, images.feedbackWrong1, images.feedbackWrong2]
   );
 
   // Reset state when question changes
@@ -650,14 +652,14 @@ export default function PracticeQuestion({
               marginBottom: '0.5rem',
               fontFamily: "'Nunito', sans-serif"
             }}>
-              Practice Scenario {correctCount + 1}
+              {text.practiceQuestion.scenarioLabel} {correctCount + 1}
             </div>
             <div style={{
               fontSize: '0.875rem',
               color: '#6b7280',
               fontFamily: "'Nunito', sans-serif"
             }}>
-              Correct Answers: {correctCount} / 10
+              {text.practiceQuestion.progressLabel}: {correctCount} / 10
             </div>
 
             {/* Progress Bar */}
@@ -689,7 +691,7 @@ export default function PracticeQuestion({
             marginBottom: '2.5rem',
             fontFamily: "'Nunito', sans-serif"
           }}>
-            What will you do?
+            {text.practiceQuestion.instruction}
           </p>
 
           {/* Render the popup */}
@@ -772,8 +774,8 @@ export default function PracticeQuestion({
             marginBottom: '1.5rem'
           }}>
             <img
-              src={isCorrect ? '/Happy.png' : notQuiteImage}
-              alt={isCorrect ? 'Happy' : 'Not Quite'}
+              src={isCorrect ? images.feedbackCorrect : notQuiteImage}
+              alt={isCorrect ? 'Correct' : 'Not Quite'}
               style={{
                 width: '180px',
                 height: 'auto',
@@ -790,7 +792,7 @@ export default function PracticeQuestion({
             marginBottom: '1rem',
             fontFamily: "'Nunito', sans-serif"
           }}>
-            {isCorrect ? 'Perfect Choice!' : 'Not Quite!'}
+            {isCorrect ? text.practiceQuestion.feedbackCorrectTitle : text.practiceQuestion.feedbackWrongTitle}
           </h2>
 
           <p style={{

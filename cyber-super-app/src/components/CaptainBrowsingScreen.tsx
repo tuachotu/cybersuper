@@ -1,3 +1,5 @@
+import { usePersona } from "../persona";
+
 interface CaptainBrowsingScreenProps {
   onSelectProtocol: (protocolId: string) => void;
   onBack: () => void;
@@ -14,31 +16,33 @@ interface ProtocolCard {
   buttonText: string;
 }
 
-const protocols: ProtocolCard[] = [
-  {
-    id: "no-force",
-    emoji: "🛑",
-    title: "The NO Force",
-    subtitle: "Your Super Button of Safety!",
-    buttonText: "Learn the NO Force →"
-  },
-  {
-    id: "triple-shield",
-    emoji: "🛡️",
-    title: "The Triple Shield",
-    subtitle: "Your Three-Step Safety Shield!",
-    buttonText: "Master the Triple Shield →"
-  },
-  {
-    id: "never-ever",
-    emoji: "🚫",
-    title: "The Never-Ever Rules",
-    subtitle: "Your Secret Code of Safety!",
-    buttonText: "Open the Never-Ever Rules →"
-  }
-];
-
 export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPractice, visitedProtocols: _visitedProtocols, onShowParents }: CaptainBrowsingScreenProps) {
+  const { text, theme } = usePersona();
+
+  const protocols: ProtocolCard[] = [
+    {
+      id: "no-force",
+      emoji: "🛑",
+      title: text.captainBrowsing.protocols.noForce.title,
+      subtitle: text.captainBrowsing.protocols.noForce.subtitle,
+      buttonText: text.captainBrowsing.protocols.noForce.buttonText,
+    },
+    {
+      id: "triple-shield",
+      emoji: "🛡️",
+      title: text.captainBrowsing.protocols.tripleShield.title,
+      subtitle: text.captainBrowsing.protocols.tripleShield.subtitle,
+      buttonText: text.captainBrowsing.protocols.tripleShield.buttonText,
+    },
+    {
+      id: "never-ever",
+      emoji: "🚫",
+      title: text.captainBrowsing.protocols.neverEver.title,
+      subtitle: text.captainBrowsing.protocols.neverEver.subtitle,
+      buttonText: text.captainBrowsing.protocols.neverEver.buttonText,
+    },
+  ];
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -122,7 +126,7 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
           marginBottom: '3rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Captain Browsing Training
+          {text.captainBrowsing.heading}
         </h1>
 
         {/* Protocol Cards */}
@@ -142,11 +146,11 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
             }}>
               <div
                 style={{
-                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
+                  background: theme.primaryGradient,
                   borderRadius: '1.5rem',
                   padding: '2rem 1.5rem',
                   border: '5px solid white',
-                  boxShadow: '0 10px 30px rgba(255, 107, 53, 0.5)',
+                  boxShadow: `0 10px 30px ${theme.primaryShadow}`,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
@@ -269,7 +273,7 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
               e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
             }}
           >
-            ← Back to Missions
+            {text.captainBrowsing.backButton}
           </button>
 
           <button
@@ -298,7 +302,7 @@ export default function CaptainBrowsingScreen({ onSelectProtocol, onBack, onPrac
               e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
             }}
           >
-            Practice Your Powers
+            {text.captainBrowsing.practiceButton}
           </button>
         </div>
       </div>

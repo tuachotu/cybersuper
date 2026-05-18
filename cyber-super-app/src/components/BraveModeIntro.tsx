@@ -1,9 +1,12 @@
+import { usePersona } from "../persona";
+
 interface BraveModeIntroProps {
   onStart: () => void;
   onShowParents?: () => void;
 }
 
 export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntroProps) {
+  const { text, images, theme } = usePersona();
   return (
     <div style={{
       minHeight: '100vh',
@@ -89,8 +92,8 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
           marginBottom: '2rem'
         }}>
           <img
-            src="/bp-bear.png"
-            alt="Captain Browser Bear"
+            src={images.practiceIntroMascot}
+            alt="Practice Mode Mascot"
             style={{
               width: '200px',
               height: 'auto',
@@ -108,7 +111,7 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
           marginBottom: '2rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Welcome to the Captain Browsing Training Simulator!
+          {text.braveModeIntro.title}
         </h1>
 
         {/* Main Content */}
@@ -123,14 +126,14 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
             marginBottom: '1.5rem',
             fontWeight: 600
           }}>
-            You're about to begin a mission where you'll face real online situations.
+            {text.braveModeIntro.intro}
           </p>
 
           <p style={{
             marginBottom: '1.5rem'
           }}>
-            To complete your training and earn the title of <strong style={{ color: '#3b82f6' }}>Captain Browser</strong>,
-            you'll need to make <strong>10 safe choices</strong> using your three superpowers:
+            To complete your training and earn the title of <strong style={{ color: theme.accentBlue }}>{text.braveModeIntro.titleEarned}</strong>,
+            you'll need to make <strong>{text.braveModeIntro.targetText}</strong> using your three superpowers:
           </p>
 
           {/* Powers List */}
@@ -152,9 +155,9 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
               fontWeight: 600,
               color: '#1e40af'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>• The NO Force</li>
-              <li style={{ marginBottom: '0.5rem' }}>• The Triple Shield</li>
-              <li>• The Never-Ever Rules</li>
+              <li style={{ marginBottom: '0.5rem' }}>• {text.braveModeIntro.powers.noForce}</li>
+              <li style={{ marginBottom: '0.5rem' }}>• {text.braveModeIntro.powers.tripleShield}</li>
+              <li>• {text.braveModeIntro.powers.neverEver}</li>
             </ul>
           </div>
 
@@ -162,7 +165,7 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
             marginBottom: '1rem',
             fontWeight: 600
           }}>
-            Each decision you make helps sharpen your instincts and strengthen your safety skills.
+            {text.braveModeIntro.body2}
           </p>
 
           <p style={{
@@ -171,7 +174,7 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
             color: '#3b82f6',
             marginTop: '2rem'
           }}>
-            Stay focused, trust your powers, and choose wisely.
+            {text.braveModeIntro.slogan}
           </p>
         </div>
 
@@ -183,14 +186,14 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
           marginBottom: '2rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Ready to begin your mission?
+          {text.braveModeIntro.readyMessage}
         </p>
 
         {/* Start Button */}
         <button
           onClick={onStart}
           style={{
-            background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
+            background: theme.primaryGradient,
             color: 'white',
             fontWeight: 900,
             fontSize: '1.25rem',
@@ -199,19 +202,19 @@ export default function BraveModeIntro({ onStart, onShowParents }: BraveModeIntr
             border: '5px solid white',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 10px 30px rgba(255, 107, 53, 0.5)',
+            boxShadow: `0 10px 30px ${theme.primaryShadow}`,
             fontFamily: "'Nunito', sans-serif"
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.05) translateY(-3px)';
-            e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 107, 53, 0.7)';
+            e.currentTarget.style.boxShadow = `0 15px 40px ${theme.primaryShadowHover}`;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1) translateY(0)';
-            e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.5)';
+            e.currentTarget.style.boxShadow = `0 10px 30px ${theme.primaryShadow}`;
           }}
         >
-          Start the Simulator →
+          {text.braveModeIntro.startButton}
         </button>
       </div>
     </div>

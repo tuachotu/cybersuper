@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePersona } from "../persona";
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -8,6 +9,7 @@ interface WelcomeScreenProps {
 
 export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables }: WelcomeScreenProps) {
   const [showResourcesMenu, setShowResourcesMenu] = useState(false);
+  const { text, images, theme } = usePersona();
 
   return (
     <div style={{
@@ -170,7 +172,7 @@ export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables
           justifyContent: 'center'
         }}>
           <img
-            src="/mascot.png"
+            src={images.welcomeMascot}
             alt="Cyber Super Mascot"
             style={{
               width: '500px',
@@ -216,7 +218,7 @@ export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables
             margin: 0,
             textAlign: 'center'
           }}>
-            Essential skills for a digital world.
+            {text.welcome.heading}
           </h2>
 
           {/* Description Text */}
@@ -229,7 +231,7 @@ export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables
             textAlign: 'center',
             margin: 0
           }}>
-            Kids learn how to browse wisely, understand how apps work, and think before making choices. The program builds habits that help kids stay safe, confident, and in control online.
+            {text.welcome.description}
           </p>
         </div>
 
@@ -238,7 +240,7 @@ export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables
           onClick={onStart}
           style={{
             fontFamily: "'Nunito', sans-serif",
-            background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%)',
+            background: theme.primaryGradient,
             color: 'white',
             fontWeight: 900,
             fontSize: 'clamp(1.25rem, 3.5vw, 2rem)',
@@ -248,20 +250,20 @@ export default function WelcomeScreen({ onStart, onShowParents, onShowPrintables
             cursor: 'pointer',
             display: 'inline-block',
             transition: 'all 0.3s ease',
-            boxShadow: '0 10px 30px rgba(255, 107, 53, 0.5)',
+            boxShadow: `0 10px 30px ${theme.primaryShadow}`,
             textTransform: 'capitalize',
             letterSpacing: '0.02em'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.05) translateY(-3px)';
-            e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 107, 53, 0.7)';
+            e.currentTarget.style.boxShadow = `0 15px 40px ${theme.primaryShadowHover}`;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1) translateY(0)';
-            e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 53, 0.5)';
+            e.currentTarget.style.boxShadow = `0 10px 30px ${theme.primaryShadow}`;
           }}
         >
-          Start Cyber Super Training
+          {text.welcome.ctaButton}
         </button>
       </div>
 

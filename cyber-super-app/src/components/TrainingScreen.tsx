@@ -1,3 +1,5 @@
+import { usePersona } from "../persona";
+
 interface TrainingScreenProps {
   protocolId: string;
   onBack: () => void;
@@ -8,6 +10,8 @@ interface TrainingScreenProps {
 }
 
 export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTraps, onShowFlickFeedMissions, onShowCalmCommanderOath, onShowParents }: TrainingScreenProps) {
+  const { text, images } = usePersona();
+
   const renderNoForce = () => (
     <div>
       {/* Title */}
@@ -19,7 +23,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         textAlign: 'center'
       }}>
-        🛑 The NO Force
+        {text.training.noForce.title}
       </h1>
 
       {/* Introduction */}
@@ -31,7 +35,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         fontWeight: 600
       }}>
-        The NO Force is a simple safety rule:
+        {text.training.noForce.intro}
       </p>
 
       <div style={{
@@ -49,7 +53,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontWeight: 700,
           marginBottom: '1rem'
         }}>
-          If a website asks a Yes/No question you didn't expect, choose NO.
+          {text.training.noForce.keyRule}
         </p>
         <p style={{
           fontSize: '1rem',
@@ -58,7 +62,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           fontWeight: 600
         }}>
-          (You only choose YES when a parent or trusted adult says it's safe.)
+          {text.training.noForce.keyRuleNote}
         </p>
       </div>
 
@@ -463,7 +467,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
         }}>
-          If you didn't ask for it — choose NO.
+          {text.training.noForce.finalMessage}
         </p>
       </div>
     </div>
@@ -480,7 +484,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         textAlign: 'center'
       }}>
-        🛡️ The Triple Shield
+        {text.training.tripleShield.title}
       </h1>
 
       {/* Introduction */}
@@ -493,7 +497,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontWeight: 600,
         textAlign: 'center'
       }}>
-        The Triple Shield gives you three actions that always keep you safe:
+        {text.training.tripleShield.intro}
       </p>
 
       {/* Shield 1 - Always Ask */}
@@ -511,7 +515,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           marginBottom: '1rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          1. Always Ask
+          {text.training.tripleShield.shield1Title}
         </h3>
         <p style={{
           fontSize: '1.125rem',
@@ -520,7 +524,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           fontWeight: 600
         }}>
-          If something shows up that you didn't expect or don't understand, ask a parent or trusted adult before clicking anything.
+          {text.training.tripleShield.shield1Body}
         </p>
       </div>
 
@@ -539,7 +543,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           marginBottom: '1rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          2. Always Close
+          {text.training.tripleShield.shield2Title}
         </h3>
         <p style={{
           fontSize: '1.125rem',
@@ -548,7 +552,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           fontWeight: 600
         }}>
-          If a website looks suspicious, confusing, or uncomfortable, close the tab or window right away.
+          {text.training.tripleShield.shield2Body}
         </p>
       </div>
 
@@ -567,7 +571,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           marginBottom: '1rem',
           fontFamily: "'Nunito', sans-serif"
         }}>
-          3. Always Tell
+          {text.training.tripleShield.shield3Title}
         </h3>
         <p style={{
           fontSize: '1.125rem',
@@ -576,7 +580,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           fontWeight: 600
         }}>
-          If something online makes you uneasy — a message, a picture, a pop-up — tell a parent. You're never in trouble for reporting it.
+          {text.training.tripleShield.shield3Body}
         </p>
       </div>
 
@@ -1031,7 +1035,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
         }}>
-          Ask if unsure. Close if weird. Tell if uncomfortable.
+          {text.training.tripleShield.finalMessage}
         </p>
       </div>
     </div>
@@ -1049,8 +1053,8 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         flexWrap: 'wrap'
       }}>
         <img
-          src="/smart-ai.png"
-          alt="App Hero Bear"
+          src={images.trainingIcons.appHero}
+          alt="App Hero"
           style={{
             width: '150px',
             height: '150px',
@@ -1064,7 +1068,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           margin: 0,
           fontFamily: "'Nunito', sans-serif"
         }}>
-          App Hero
+          {text.training.appHero.title}
         </h1>
       </div>
 
@@ -1077,7 +1081,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         fontWeight: 600
       }}>
-        You open an app, Just to check one thing. You scroll a little, Then a little more. A notification pops up. Someone liked your post. Another message comes in. Suddenly, time moves fast here. Way faster than you expect.
+        {text.training.appHero.story1}
       </p>
       <p style={{
         fontSize: '1.125rem',
@@ -1087,7 +1091,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         fontWeight: 600
       }}>
-        Nothing bad happened. No rules were broken. The app did exactly what it was designed to do- keep your attention.
+        {text.training.appHero.story2}
       </p>
 
       {/* Power to Practice Rectangle */}
@@ -1106,7 +1110,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           textAlign: 'center'
         }}>
-          Your Power: Taking Control
+          {text.training.appHero.powerTitle}
         </h2>
         <p style={{
           fontSize: '1.125rem',
@@ -1117,7 +1121,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           textAlign: 'center',
           margin: 0
         }}>
-          Find the settings. Change how the app works for you.
+          {text.training.appHero.powerBody}
         </p>
       </div>
 
@@ -1240,7 +1244,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         flexWrap: 'wrap'
       }}>
         <img
-          src="/CalmCommander.png"
+          src={images.trainingIcons.calmCommander}
           alt="Calm Commander"
           style={{
             width: '150px',
@@ -1255,7 +1259,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           margin: 0,
           fontFamily: "'Nunito', sans-serif"
         }}>
-          Calm Commander
+          {text.training.calmCommander.title}
         </h1>
       </div>
 
@@ -1268,9 +1272,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         fontWeight: 600
       }}>
-        You see a post. It's shocking. Or exciting. Or makes you angry.
-        Your heart beats faster. Your fingers want to tap. Share. Comment. React. The screen is loud.
-        Your feelings get big. And suddenly, it feels urgent to do something.
+        {text.training.calmCommander.body1}
       </p>
 
       {/* Paragraph 2 */}
@@ -1282,7 +1284,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         fontWeight: 600
       }}>
-        Nothing strange is happening. The internet is doing what it was designed to do . push your emotions and rush your reactions. <strong>Big feelings make clicks happen faster than thinking.</strong>
+        {text.training.calmCommander.body2}
       </p>
 
       {/* Power Box (Green) */}
@@ -1301,7 +1303,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           textAlign: 'center'
         }}>
-          Your Power: Staying Calm
+          {text.training.calmCommander.powerTitle}
         </h2>
         <p style={{
           fontSize: '1.125rem',
@@ -1312,9 +1314,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           textAlign: 'center',
           margin: 0
         }}>
-          When feelings are big, don't react.
-          Pause. Move on. Or ask a grown-up.
-          That's what Calm Commanders do.
+          {text.training.calmCommander.powerBody}
         </p>
       </div>
 
@@ -1404,7 +1404,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontFamily: "'Nunito', sans-serif",
         textAlign: 'center'
       }}>
-        🚫 The Never-Ever Rules
+        {text.training.neverEver.title}
       </h1>
 
       {/* Introduction */}
@@ -1417,7 +1417,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         fontWeight: 600,
         textAlign: 'center'
       }}>
-        Some information should never be shared online without a parent — even if a website or person seems friendly.
+        {text.training.neverEver.intro}
       </p>
 
       <div style={{
@@ -1435,7 +1435,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontWeight: 600,
           marginBottom: '0.5rem'
         }}>
-          The Never-Ever Rules protect your personal information and your identity.
+          {text.training.neverEver.box1}
         </p>
         <p style={{
           fontSize: '1rem',
@@ -1444,7 +1444,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           fontWeight: 600
         }}>
-          These rules help you avoid people or websites that might misuse what you share.
+          {text.training.neverEver.box2}
         </p>
       </div>
 
@@ -1460,167 +1460,33 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
         🔒 Never share:
       </h2>
 
-      {/* Rule 1 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
+      {text.training.neverEver.rules.map((rule, i) => (
+        <div key={i} style={{
+          background: 'white',
+          borderRadius: '1rem',
+          padding: '1.25rem',
+          marginBottom: i === text.training.neverEver.rules.length - 1 ? '2rem' : '1rem',
+          border: '2px solid #fecaca',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
         }}>
-          1. Your full name
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          Online strangers do not need to know who you are.
-        </p>
-      </div>
-
-      {/* Rule 2 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          2. Your age or birthday
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          This reveals more about you than you think.
-        </p>
-      </div>
-
-      {/* Rule 3 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          3. Your location
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          Home, school, neighborhood — keep these private.
-        </p>
-      </div>
-
-      {/* Rule 4 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          4. Your photos or video
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          Don't turn on your camera or send pictures unless a parent approves.
-        </p>
-      </div>
-
-      {/* Rule 5 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          5. Your login info
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          Passwords, codes, and accounts must stay private — always.
-        </p>
-      </div>
-
-      {/* Rule 6 */}
-      <div style={{
-        background: 'white',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-        marginBottom: '2rem',
-        border: '2px solid #fecaca',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
-      }}>
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontWeight: 800,
-          color: '#dc2626',
-          marginBottom: '0.5rem',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          6. Anything that feels personal
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#6b7280',
-          fontFamily: "'Nunito', sans-serif"
-        }}>
-          If you're not sure, assume it's private.
-        </p>
-      </div>
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: 800,
+            color: '#dc2626',
+            marginBottom: '0.5rem',
+            fontFamily: "'Nunito', sans-serif"
+          }}>
+            {rule.heading}
+          </h3>
+          <p style={{
+            fontSize: '1rem',
+            color: '#6b7280',
+            fontFamily: "'Nunito', sans-serif"
+          }}>
+            {rule.body}
+          </p>
+        </div>
+      ))}
 
       <div style={{
         borderTop: '2px dashed #d1d5db',
@@ -2022,7 +1888,7 @@ export default function TrainingScreen({ protocolId, onBack, onShowFlickFeedTrap
           fontFamily: "'Nunito', sans-serif",
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
         }}>
-          If it's personal, private, or about you — don't share it.
+          {text.training.neverEver.finalMessage}
         </p>
       </div>
     </div>
